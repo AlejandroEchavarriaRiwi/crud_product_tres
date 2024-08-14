@@ -1,5 +1,6 @@
-export default function Form(){
+export default function Table(){
+
     return(
-        <h1>formulario</h1>
+        <h1 className="">Users</h1>
     )
 }
