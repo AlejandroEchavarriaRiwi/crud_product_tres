@@ -1,5 +1,5 @@
 export default function Table(){
     return(
-        <h1>tabla</h1>
+        <h1>form</h1>
     )
 }
