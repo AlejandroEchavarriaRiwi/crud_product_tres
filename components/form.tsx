@@ -1,9 +1,11 @@
+//modulos 
 'use client'
 import './sytlosForm/form.css'
 import Util from "@/utils/util";
 import React, { FormEvent, useEffect, useState } from "react";
 import inputAlert from "./alert/alert";
 
+// componentes de funciones  
 export default function Form() {
     const [urlImage, setUrlImage] = useState<string>("");
     const [title, setTitle] = useState<string>("");
@@ -17,7 +19,7 @@ export default function Form() {
         await inputAlert("Product created", "success");
         window.location.href = "/tablePage";
     }
-
+// estructura html que me va a mostrar 
     return (
         <form className="form" onSubmit={handleSubmit}>
 
