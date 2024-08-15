@@ -1,12 +1,11 @@
-export default function Form (){
-    return (
+import Form from "@/components/form";
+
+function ViewForm(){
+    return(
         <main>
-            <h1>CREATE ELEMENT</h1>
-
-            <Form/>
-
-            
-        
+            <h1>Form</h1>
+            <Form />
         </main>
     )
 }
+export default ViewForm;
