@@ -14,5 +14,5 @@ export default class Util{
     }
     static verifyData(...fields: string[]): boolean{
         return fields.every(field=>field);
-    } 
+    }
 }
