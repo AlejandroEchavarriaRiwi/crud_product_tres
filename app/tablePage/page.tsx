@@ -1,5 +1,6 @@
+
 "use client"
-import  ProductTable from "../../components/table";
+import ProductTable from "@/components/productable";
 
 
 export default function NuevaPagina() {
