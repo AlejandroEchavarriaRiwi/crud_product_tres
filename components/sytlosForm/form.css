@@ -12,15 +12,16 @@
 
 }
 
+/* label para dal estilo a las letras  */
 label{
     display: table-cell;
     vertical-align: inherit;
     text-align: center;
 }
 
-
+/*  estylos del formulario  */
 .form {
-
+    
     display: table-row;
     vertical-align: inherit;
     unicode-bidi: isolate;
@@ -40,12 +41,13 @@ label{
     flex-direction: column;
     align-items: center;
 }
-
+/* para que no tenga border el formulario */
 fieldset{
     border: none;
+    text-align: center;
 
 }
-
+/* centrando contenido del formulario desde la pagina main  */
 .PageForm{
     justify-content: center;
 }
@@ -69,6 +71,7 @@ form.form > fieldset.form-price > label.price-label{
     margin-bottom: .5rem;
 }
 
+
 form.form > fieldset.form-url > input.url-input,
 form.form > fieldset.form-title > input.title-input,
 form.form > fieldset.form-description > input.description-input,
@@ -87,4 +90,5 @@ form.form > button.form-button{
     color: #fff;
     width: 95%;
     margin-top: .8rem;
+
 }
