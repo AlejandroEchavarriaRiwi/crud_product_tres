@@ -1,4 +1,3 @@
-import 'styled-components';
 import Form from "@/components/form";
 import "../../components/sytlosForm/form.css"
 
