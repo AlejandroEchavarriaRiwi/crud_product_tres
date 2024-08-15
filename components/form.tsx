@@ -2,6 +2,7 @@
 import './sytlosForm/form.css'
 import Util from "@/utils/util";
 import React, { FormEvent, useEffect, useState } from "react";
+import inputAlert from "./alert/alert";
 
 export default function Form() {
     const [urlImage, setUrlImage] = useState<string>("");
@@ -9,11 +10,12 @@ export default function Form() {
     const [description, setDescription] = useState<string>("");
     const [price, setPrice] = useState<number>(0.0);
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    const handleSubmit = async(event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         const product_id = Date.now();
         Util.createProduct({id:product_id,title, description, price, image: urlImage});
-        console.log({message: "Product created"});
+        await inputAlert("Product created", "success");
+        window.location.href = "/tablePage";
     }
 
     return (
