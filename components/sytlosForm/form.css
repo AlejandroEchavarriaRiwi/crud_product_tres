@@ -1,0 +1,54 @@
+/* estilos de form */
+@stylosform:
+
+:root {
+
+--colorFondo : #ffffff;
+--cajaSonbra :0 1px 3px rgba(0,0,0,0.2);
+--borderForm: border-radius:8px;
+--tamañoPrecio: font-weight: 600;
+--colorPrecio:color: #28a745;
+--hover : var(--hover background-color: #f1f3f5)
+
+
+
+}
+
+label{
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: center;
+}
+
+
+.form {
+
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+
+}
+/* llamando a esta etiqueta main con clase pageform para centrar formulario */
+.PageForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+fieldset{
+    border: none;
+
+}
+
+.PageForm{
+    justify-content: center;
+}
+

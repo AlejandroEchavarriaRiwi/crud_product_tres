@@ -1,3 +1,4 @@
+import './sytlosForm/form.css'
 export default function Form(){
     return(
         <form className="form">
@@ -23,4 +24,4 @@ export default function Form(){
             <input className="form-button" type="submit" value={"Create"} />
         </form>
     )
-}
+}   

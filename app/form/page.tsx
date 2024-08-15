@@ -1,9 +1,11 @@
+import 'styled-components';
 import Form from "@/components/form";
+import "../../components/sytlosForm/form.css"
 
 function ViewForm(){
     return(
-        <main>
-            <h1>Form</h1>
+        <main className="PageForm" >
+            <h1 className="tituloPageForm" >New Product</h1>
             <Form />
         </main>
     )
