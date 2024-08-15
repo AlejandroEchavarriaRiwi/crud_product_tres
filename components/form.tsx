@@ -1,4 +1,5 @@
 'use client'
+import './sytlosForm/form.css'
 import Util from "@/utils/util";
 import React, { FormEvent, useEffect, useState } from "react";
 
@@ -17,6 +18,7 @@ export default function Form() {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
+
             <div className="form-title">
                 <h2 className="title">Create product</h2>
             </div>
@@ -67,5 +69,8 @@ export default function Form() {
             </fieldset>
             <button className="form-button" type="submit">Enviar</button>
         </form>
-    )   
-}
+
+    )
+}   
+
+
