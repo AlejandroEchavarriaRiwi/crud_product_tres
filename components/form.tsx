@@ -1,3 +1,4 @@
+//modulos 
 'use client'
 import './sytlosForm/form.css'
 import Util from "@/utils/util";
@@ -17,7 +18,7 @@ export default function Form() { // Componente Form
         await inputAlert("Product created", "success");
         window.location.href = "/tablePage";
     }
-
+// estructura html que me va a mostrar 
     return (
         <form className="form" onSubmit={handleSubmit}>
 

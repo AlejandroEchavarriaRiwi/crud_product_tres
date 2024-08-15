@@ -87,6 +87,12 @@ form.form > button.form-button{
     padding: .8rem;
     border-radius: .8rem;
     background-color: rgb(0, 166, 78);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.form-button :hover{
+    color:rgb(61, 61, 61)
     color: #fff;
     width: 95%;
     margin-top: .8rem;
