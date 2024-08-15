@@ -16,10 +16,6 @@ export default function Form(){
                 <label className="description-label">Description:</label>
                 <input className="description-input" type="text"/>
             </fieldset>
-            <fieldset className="form-description">
-                <label className="description-label">Description:</label>
-                <input className="description-input" type="text"/>
-            </fieldset>
             <fieldset className="form-price">
                 <label className="price-label">Price:</label>
                 <input className="price-input" type="text"/>
