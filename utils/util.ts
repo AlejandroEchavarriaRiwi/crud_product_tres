@@ -1,4 +1,6 @@
+
 import { Product } from "@/type/IProduct";
+
 
 export default class Util{
     static getProducts(): Product[] | undefined{
