@@ -5,7 +5,6 @@ import "../../components/sytlosForm/form.css"
 function ViewForm(){
     return(
         <main className="PageForm" >
-            <h1 className="tituloPageForm" >New Product</h1>
             <Form />
         </main>
     )

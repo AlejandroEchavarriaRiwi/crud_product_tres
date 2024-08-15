@@ -5,16 +5,15 @@ import Util from "@/utils/util";
 import React, { FormEvent, useEffect, useState } from "react";
 import inputAlert from "./alert/alert";
 
-// componentes de funciones  
-export default function Form() {
-    const [urlImage, setUrlImage] = useState<string>("");
+export default function Form() { // Componente Form
+    const [urlImage, setUrlImage] = useState<string>(""); // States for every input of form
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [price, setPrice] = useState<number>(0.0);
 
-    const handleSubmit = async(event: FormEvent<HTMLFormElement>): Promise<void> => {
-        event.preventDefault();
-        const product_id = Date.now();
+    const handleSubmit = async(event: FormEvent<HTMLFormElement>): Promise<void> => { // Function for submit form
+        event.preventDefault(); // Prevent page reload
+        const product_id = Date.now(); // Generate id for every product
         Util.createProduct({id:product_id,title, description, price, image: urlImage});
         await inputAlert("Product created", "success");
         window.location.href = "/tablePage";
