@@ -1,6 +1,5 @@
-import 'styled-components';
-import Form from "@/components/form";
-import "../../components/sytlosForm/form.css"
+
+import Form from "@/components/ui/form/formComponent";
 
 function ViewForm(){
     return(
