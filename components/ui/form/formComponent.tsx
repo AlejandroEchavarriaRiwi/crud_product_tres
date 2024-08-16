@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import Input from "./input/inputComponent";
 import styled from 'styled-components';
-import TextArea from "../table/textarea/textareaComponent";
+import TextArea from "./textarea/textareaComponent";
 import { IProduct } from "@/types/IProduct";
 import Button from "./button/buttonComponent";
-import Util from "@/utils/util";
+import {Util} from "@/utils/util";
 
 const StyledForm = styled.form
 `
