@@ -1,5 +1,7 @@
 
+
 import Form from "@/components/ui/form/formComponent";
+import "../../components/sytlosForm/form.css"
 
 function ViewForm(){
     return(
