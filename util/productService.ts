@@ -1,4 +1,4 @@
-import { Product } from "@/type/IProduct";
+import { Product } from "@/types/IProduct";
 
 
 export function getProducts(): Product[] {

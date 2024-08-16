@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getProducts } from '../util/productService';
-import { Product } from '@/type/IProduct';
+import { Product } from '@/types/IProduct';
 import '../styles/tablestyle.css';
+import Button from '@/components/button/button';
+import { FaEdit } from 'react-icons/fa';
 
 const ProductTable: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

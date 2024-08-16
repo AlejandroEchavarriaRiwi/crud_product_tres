@@ -1,4 +1,6 @@
-import Form from "@/components/form";
+
+
+import Form from "@/components/ui/form/formComponent";
 import "../../components/sytlosForm/form.css"
 
 function ViewForm(){

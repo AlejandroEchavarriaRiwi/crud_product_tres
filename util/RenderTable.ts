@@ -1,4 +1,4 @@
-import { Product } from '@/type/IProduct';
+import { Product } from '@/types/IProduct';
 import { getProducts } from "./productService";
 import React, { useState, useEffect } from 'react';
 
