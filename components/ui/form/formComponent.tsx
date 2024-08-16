@@ -6,10 +6,10 @@ import TextArea from "./textarea/textareaComponent";
 import { IProduct } from "@/types/IProduct";
 import Button from "./button/buttonComponent";
 import {Util} from "@/utils/util";
+import inputAlert from "@/components/alert/alert";
 
-const StyledForm = styled.form
-`
-background-color: #f8f9fa;
+const StyledForm = styled.form`
+background-color:white;
 `;
 
 const StyledFieldset = styled.fieldset
@@ -30,16 +30,19 @@ export default function Form(): JSX.Element {
 
     const [product, setProduct] = useState<IProduct>(initialProduct);
 
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void =>{
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>):void =>{
         const {name,value} = e.target;
         setProduct({
             ...product,
             [name]: value
         });
+        
     }
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         Util.createProduct(product);
+        await inputAlert("Producto creado exitosamente","success");
+        window.location.href = "/tablePage"
     }
     return(
         <StyledForm className="form-add-product" onSubmit={handleSubmit}>

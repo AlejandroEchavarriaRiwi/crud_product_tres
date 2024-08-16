@@ -9,7 +9,7 @@ interface IInput{
 }
 const StyledInput = Styled.input
 `
-background-color:red
+background-color:white
 `;
 export default function Input(props: IInput){
     return(
