@@ -77,7 +77,7 @@ const ProductTable: React.FC = () => {
                 />
               </td>
               <td className="styled-td">
-                <span className="styled-price">${product.price.toFixed(2)}</span>
+                <span className="styled-price">${product.price}</span>
               </td>
               <td className="styled-td">
                 <ModifyIcon onClick={() => handleEdit(product)} />
