@@ -21,3 +21,20 @@ a {
 a:hover{
     color:rgb(61, 61, 61)
 }
+
+#lifooter{
+    color: rgb(0, 166, 78);
+}
+
+.UlFooter{
+margin-top: 15rem;
+display: flex;
+justify-content:space-around ;
+font-family: inherit;
+color: #DDD;
+font-size: 11px;
+text-align: center;
+line-height: 18px;
+white-space: nowrap;
+
+}
