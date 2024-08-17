@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Product } from '@/type/IProduct';
+import { IProduct } from '@/types/IProduct';
 
 interface EditProductFormProps {
-  product: Product;
-  onSave: (product: Product) => void;
+  product: IProduct;
+  onSave: (product: IProduct) => void;
   onCancel: () => void;
 }
 
@@ -11,11 +11,11 @@ const EditProductForm: React.FC<EditProductFormProps> = ({ product, onSave, onCa
   const [title, setTitle] = useState(product.title);
   const [description, setDescription] = useState(product.description);
   const [price, setPrice] = useState(product.price);
-  const [image, setImage] = useState(product.image);
+  const [url_image, setImage] = useState(product.url_image);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ ...product, title, description, price, image });
+    onSave({ ...product, title, description, price, url_image });
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +57,7 @@ const EditProductForm: React.FC<EditProductFormProps> = ({ product, onSave, onCa
         <label>Imagen URL</label>
         <input
           type="text"
-          value={image}
+          value={url_image}
           onChange={(e) => setImage(e.target.value)}
         />
       </div>
