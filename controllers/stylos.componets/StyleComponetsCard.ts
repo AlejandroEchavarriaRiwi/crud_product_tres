@@ -13,10 +13,15 @@ export interface Cards {
 export const CardContainer = styled.div`
 width: 300px;
 border-radius: 8px;
+margin: 10px;
 overflow: hidden;
 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 transition: transform 0.3s ease;
-
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 &:hover {
     transform: translateY(-5px);
 }
@@ -54,7 +59,7 @@ export const CardButton = styled.button`
 display: block;
 width: 100%;
 padding: 10px;
-background-color: #007bff;
+background-color: rgba(0, 166, 77);
 color: white;
 border: none;
 border-radius: 0 0 8px 8px;
