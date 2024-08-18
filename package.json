@@ -12,9 +12,9 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/styled-components": "^5.1.34",
     "@vercel/postgres": "^0.9.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "inversify": "^6.0.2",
     "jsonwebtoken": "^9.0.2",
-    "babel-plugin-styled-components": "^2.1.4",
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -24,7 +24,7 @@
     "sweetalert2": "^11.6.13",
     "sweetalert2-react-content": "^5.0.7",
     "tsyringe": "^4.8.0",
-    "vercel": "^36.0.0"
+    "vercel": "^32.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
