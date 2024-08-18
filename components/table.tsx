@@ -200,6 +200,9 @@ const ProductTable: React.FC = () => {
                     ))}
                 </tbody>
             </StyledTable>
+            <Snackbar visible={snackbarVisible}>
+                ¡Producto actualizado correctamente!
+            </Snackbar>
         </>
     );
 };
