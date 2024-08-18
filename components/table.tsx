@@ -1,98 +1,175 @@
-import React, { useState, useCallback} from 'react';
+import React, { useState, useCallback } from 'react';
 import { Util } from '../utils/util';
 import { IProduct } from '@/types/IProduct';
 import '../styles/tablestyle.css';
 import DeleteIcon from './ui/icons/delete';
 import ModifyIcon from './ui/icons/modify';
-import EditProductForm from './ui/icons/modifyform';
 import RenderTable from '../utils/util';
+import { StyledTable, StyledThead, StyledTh, StyledTd, StyledTr, StyledImg, StyledPrice, StyledId } from './TableStyles/TablesStyles';
+import styled from 'styled-components';
+
+// Estos estilos adicionales los mantenemos aquí ya que son específicos de la funcionalidad de edición
+const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #009879;
+  border-radius: 4px;
+`;
+
+const Button = styled.button`
+  background-color: #009879;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    background-color: #007d63;
+  }
+`;
 
 const ProductTable: React.FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
+    const [products, setProducts] = useState<IProduct[]>([]);
+    const [editingId, setEditingId] = useState<number | null>(null);
+    const [editedProduct, setEditedProduct] = useState<IProduct | null>(null);
 
-  const handleProductsUpdate = useCallback((updatedProducts: IProduct[]) => {
-    setProducts(prevProducts => {
-      if (JSON.stringify(prevProducts) !== JSON.stringify(updatedProducts)) {
-        return updatedProducts;
-      }
-      return prevProducts;
-    });
-  }, []);
+    // Actualiza la lista de productos si hay cambios.
+    const handleProductsUpdate = useCallback((updatedProducts: IProduct[]) => {
+        setProducts(prevProducts =>
+            JSON.stringify(prevProducts) !== JSON.stringify(updatedProducts)
+                ? updatedProducts
+                : prevProducts
+        );
+    }, []);
+
+    // Elimina un producto de la lista tras confirmación.
+    const handleDelete = (id: number) => {
+        const confirmed = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
+        if (confirmed) {
+            setProducts(products.filter((product) => product.id !== id));
+        }
+    };
+
+    // Activa el modo de edición para un producto.
+    const handleEdit = (product: IProduct) => {
+        setEditingId(product.id);
+        setEditedProduct({ ...product });
+    };
+
+    // Guarda los cambios realizados en un producto.
+    const handleSave = () => {
+        if (editedProduct) {
+            setProducts(products.map((product) =>
+                product.id === editedProduct.id ? editedProduct : product
+            ));
+            setEditingId(null);
+            setEditedProduct(null);
+        }
+    };
+
+    // Cancela la edición de un producto.
+    const handleCancel = () => {
+        setEditingId(null);
+        setEditedProduct(null);
+    };
+
+    // Actualiza el valor de un campo específico del producto editado.
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof IProduct) => {
+        if (editedProduct) {
+            setEditedProduct({ ...editedProduct, [field]: e.target.value });
+        }
+    };
 
 
-  const handleDelete = (id: number) => {
-    const confirmed = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
-    if (confirmed) {
-      const updatedProducts = products.filter((product) => product.id !== id);
-      setProducts(updatedProducts);
-    }
-  };
-
-  const handleEdit = (product: IProduct) => {
-    setEditingProduct(product);
-  };
-
-  const handleSave = (updatedProduct: IProduct) => {
-    const updatedProducts = products.map((product) =>
-      product.id === updatedProduct.id ? updatedProduct : product
+    return (
+        <>
+            <RenderTable onProductsUpdate={handleProductsUpdate} />
+            <StyledTable>
+                <StyledThead>
+                    <StyledTr>
+                        <StyledTh>ID</StyledTh>
+                        <StyledTh>Nombre</StyledTh>
+                        <StyledTh>Descripción</StyledTh>
+                        <StyledTh>Imagen</StyledTh>
+                        <StyledTh>Precio</StyledTh>
+                        <StyledTh>Acciones</StyledTh>
+                    </StyledTr>
+                </StyledThead>
+                <tbody>
+                    {products.map((product: IProduct) => (
+                        <StyledTr key={product.id}>
+                            <StyledTd><StyledId>{product.id}</StyledId></StyledTd>
+                            <StyledTd>
+                                {/* Update input Tittle */}
+                                {editingId === product.id ? (
+                                    <Input
+                                        value={editedProduct?.title}
+                                        onChange={(e) => handleChange(e, 'title')}
+                                    />
+                                ) : (
+                                    product.title
+                                )}
+                            </StyledTd>
+                            <StyledTd>
+                                {/* Update input description */}
+                                {editingId === product.id ? (
+                                    <Input
+                                        value={editedProduct?.description}
+                                        onChange={(e) => handleChange(e, 'description')}
+                                    />
+                                ) : (
+                                    product.description
+                                )}
+                            </StyledTd>
+                            <StyledTd>
+                                {/* Change the field of the image */}
+                                {editingId === product.id ? (
+                                    <>
+                                        <Input
+                                            value={editedProduct?.url_image}
+                                            onChange={(e) => handleChange(e, 'url_image')}
+                                            placeholder="Ingrese URL de la imagen"
+                                        />
+                                        {editedProduct?.url_image && (
+                                            <StyledImg src={editedProduct.url_image} alt={editedProduct.title} style={{ marginTop: '10px' }} />
+                                        )}
+                                    </>
+                                ) : (
+                                    <StyledImg src={product.url_image} alt={product.title} />
+                                )}
+                            </StyledTd>
+                            <StyledTd>
+                                {/* Update input price */}
+                                {editingId === product.id ? (
+                                    <Input
+                                        value={editedProduct?.price}
+                                        onChange={(e) => handleChange(e, 'price')}
+                                        type="number"
+                                    />
+                                ) : (
+                                    <StyledPrice>${product.price}</StyledPrice>
+                                )}
+                            </StyledTd>
+                            <StyledTd>
+                                {editingId === product.id ? (
+                                    <>
+                                        <Button onClick={handleSave}>Guardar</Button>
+                                        <Button onClick={handleCancel}>Cancelar</Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button onClick={() => handleEdit(product)}><ModifyIcon /></Button>
+                                        <Button onClick={() => handleDelete(product.id)}><DeleteIcon /></Button>
+                                    </>
+                                )}
+                            </StyledTd>
+                        </StyledTr>
+                    ))}
+                </tbody>
+            </StyledTable>
+        </>
     );
-    setProducts(updatedProducts);
-    setEditingProduct(null);
-  };
-
-  const handleCancel = () => {
-    setEditingProduct(null);
-  };
-
-  return (
-    <>
-     <RenderTable onProductsUpdate={handleProductsUpdate} />
-      {editingProduct && (
-        <EditProductForm
-          product={editingProduct}
-          onSave={handleSave}
-          onCancel={handleCancel}
-        />
-      )}
-
-      <table className="styled-table">
-        <thead className="styled-thead">
-          <tr className="styled-tr">
-            <th className="styled-th">ID</th>
-            <th className="styled-th">Nombre</th>
-            <th className="styled-th">Descripción</th>
-            <th className="styled-th">Imagen</th>
-            <th className="styled-th">Precio</th>
-            <th className="styled-th">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product: IProduct) => (
-            <tr className="styled-tr" key={product.id}>
-              <td className="styled-td"><span className="styled-id">{product.id}</span></td>
-              <td className="styled-td">{product.title}</td>
-              <td className="styled-td">{product.description}</td>
-              <td className="styled-td">
-                <img
-                  src={product.url_image}
-                  alt={product.title}
-                  className="styled-img"
-                />
-              </td>
-              <td className="styled-td">
-                <span className="styled-price">${product.price}</span>
-              </td>
-              <td className="styled-td">
-                <ModifyIcon onClick={() => handleEdit(product)} />
-                <DeleteIcon onClick={() => handleDelete(product.id)} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
-  );
 };
 
 export default ProductTable;
