@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback} from 'react';
 import { Util } from '../utils/util';
 import { IProduct } from '@/types/IProduct';
 import '../styles/tablestyle.css';
 import DeleteIcon from './ui/icons/delete';
 import ModifyIcon from './ui/icons/modify';
 import EditProductForm from './ui/icons/modifyform';
+import RenderTable from '../utils/util';
 
 const ProductTable: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const data = await Util.getProducts();
-      setProducts(data);
-    };
-    fetchProducts();
+  const handleProductsUpdate = useCallback((updatedProducts: IProduct[]) => {
+    setProducts(prevProducts => {
+      if (JSON.stringify(prevProducts) !== JSON.stringify(updatedProducts)) {
+        return updatedProducts;
+      }
+      return prevProducts;
+    });
   }, []);
+
 
   const handleDelete = (id: number) => {
     const confirmed = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
@@ -44,6 +47,7 @@ const ProductTable: React.FC = () => {
 
   return (
     <>
+     <RenderTable onProductsUpdate={handleProductsUpdate} />
       {editingProduct && (
         <EditProductForm
           product={editingProduct}
