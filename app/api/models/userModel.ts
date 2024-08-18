@@ -19,6 +19,15 @@ export class UserModel{
         const query = await sql.query(prepareQuery,[email]);
         return query.rows[0];
     }
+    async getUserByEmailPassword(user:Partial<IUser>):Promise<IUser | undefined>{
+        const {email,password} = user;
+        const prepareQuery = `
+        SELECT * FROM users
+        WHERE email = $1 AND password = $2;
+        `;
+        const query = await sql.query(prepareQuery,[email,password]);
+        return query.rows[0];
+    }
 
     async getUserById(user_id:number):Promise<IUser[]>{
         const prepareQuery =`
