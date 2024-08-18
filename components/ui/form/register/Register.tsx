@@ -81,7 +81,7 @@ const Register: React.FC = () => {
         <ContainerWrapper>
             <Form>
                 <Label>
-                    Email:
+                    Emai
                     <Input type="email" name="email" required />
                 </Label>
                 <Label>
