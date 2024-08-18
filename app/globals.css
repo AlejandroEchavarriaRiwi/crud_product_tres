@@ -51,4 +51,6 @@ main img{
   width: 80%;
   margin: 0 auto;
   margin-top: 90px;
+  display: flex;
+  justify-content: center;
 }

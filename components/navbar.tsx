@@ -19,7 +19,7 @@ const NavStyled = styled.nav`
     justify-content: center;
     align-items: center;
     gap: 30px;
-    background-color: rgba(0, 166, 77, 0.9);
+    background-color: rgba(0, 166, 77);
     box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.75);
 }
 
