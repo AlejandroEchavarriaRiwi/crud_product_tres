@@ -10,7 +10,7 @@ export async function POST(req:NextRequest):Promise<NextResponse>{
         const authService = container.resolve(AuthService);
         await authService.loginUser(email,password);
         const tokenGenerate = Auth.generateToken({email,password,role_id});
-        return NextResponse.json({message: "User found", tokenGenerate}, {status: 200});
+        return NextResponse.json({message: "Logged user", tokenGenerate}, {status: 200});
 
 
     }catch(error){
