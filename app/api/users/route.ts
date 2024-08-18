@@ -15,20 +15,17 @@ export async function GET():Promise<NextResponse>{ // Create function for method
     }
 }
 
-export async function POST(req: NextRequest): Promise<NextResponse | undefined>{
+export async function POST(req: NextRequest): Promise<NextResponse>{
     try{
         const {email,password,role_id} = await req.json();
-        const dataVerify = Util.verifyData(email,password,role_id);
-        
-        if(!dataVerify){
-            NextResponse.json({message: "Is required all params for create user"}, {status:201});
-            return;
+        if(!email || !password || !role_id){
+            return NextResponse.json({message: "Is required all params for create user"});
         }
         const userService = container.resolve(UserService);
         const userCreated = await userService.createUser({email,password,role_id});
-        NextResponse.json({userCreated})     
+        return NextResponse.json({userCreated}, {status: 201})     
     }catch(error){
-        NextResponse.json({message: "Error to create user", error: error}, {status: 500});
+        return NextResponse.json({message: "Error to create user", error: error}, {status: 500});
     }
 }
 

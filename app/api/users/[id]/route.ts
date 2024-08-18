@@ -9,7 +9,7 @@ export async function GET(req:NextRequest, {params}: {params: {id:string}}):Prom
     try{
         const {id} = params;
         const userService = container.resolve(UserService);
-        const user = userService.getUserById(parseInt(id));
+        const user = await userService.getUserById(parseInt(id));
         return NextResponse.json({message: "User found", user}, {status: 200})
 
     }catch(error){
