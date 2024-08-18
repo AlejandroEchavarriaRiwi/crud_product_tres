@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import "../../init";
-import { container } from 'tsyringe';
+import { container } from "tsyringe";
 import { AuthService } from "../../services/authService";
 import { Auth } from "../../utils/auth";
 
