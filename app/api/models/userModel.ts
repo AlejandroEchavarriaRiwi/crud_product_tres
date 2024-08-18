@@ -28,7 +28,6 @@ export class UserModel{
         const query = await sql.query(prepareQuery,[email,password]);
         return query.rows[0];
     }
-
     async getUserById(user_id:number):Promise<IUser[]>{
         const prepareQuery =`
         SELECT * FROM users

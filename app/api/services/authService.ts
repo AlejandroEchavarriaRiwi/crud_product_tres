@@ -2,7 +2,6 @@ import IUser from "../interfaces/userInterface";
 import { inject, injectable } from "tsyringe";
 import { UserModel } from "../models/userModel";
 import { Auth } from "../utils/auth";
-
 @injectable()
 export class AuthService{
     constructor(@inject(UserModel) private userModel: UserModel){}
@@ -17,5 +16,4 @@ export class AuthService{
             await this.userModel.createUser({email,password,role_id});
         }
     }
-
 }
