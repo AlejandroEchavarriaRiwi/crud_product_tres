@@ -11,6 +11,14 @@ export class UserModel{
             const query = await sql.query(prepareQuery);
             return query.rows;  
     }
+    async getUserByEmail(email:string):Promise<IUser | undefined>{
+        const prepareQuery = `
+        SELECT * FROM users
+        WHERE email = $1;
+        `;
+        const query = await sql.query(prepareQuery,[email]);
+        return query.rows[0];
+    }
 
     async getUserById(user_id:number):Promise<IUser[]>{
         const prepareQuery =`
@@ -21,14 +29,14 @@ export class UserModel{
         return query.rows;
     }
 
-    async createUser(user:Partial<IUser>):Promise<IUser[]>{
+    async createUser(user:Partial<IUser>):Promise<IUser>{
         const {email,password,role_id} = user;
         const prepareQuery = `
         INSERT INTO users (email, password, role_id)
         VALUES ($1, $2, $3);
         `;
         const query = await sql.query(prepareQuery,[email,password,role_id]);
-        return query.rows;
+        return query.rows[0];
     }
 
     async updateUser(user_id:number, newUser: Partial<IUser>):Promise<void>{
