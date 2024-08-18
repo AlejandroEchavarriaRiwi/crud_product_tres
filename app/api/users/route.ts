@@ -1,50 +1,34 @@
 import 'reflect-metadata';
-import {sql} from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 import {UserService} from "./services/userService";
 import  "./config/container";
 import { container } from 'tsyringe';
+import { Util } from '@/utils/util';
 
-export async function GET():Promise<NextResponse>{
+export async function GET():Promise<NextResponse>{ // Create function for method GET - Endpoint
     try{
-        const userService = container.resolve(UserService);
-        const users = await userService.getUsers();
+        const userService = container.resolve(UserService); // Resolve instance UserService
+        const users = await userService.getUsers(); 
         return NextResponse.json({users});
     }catch(error){
         return NextResponse.json({message: "Error to find the users"}, {status:404});
     }
 }
 
-export async function POST(req: NextRequest): Promise<NextResponse>{
+export async function POST(req: NextRequest): Promise<NextResponse | undefined>{
     try{
         const {email,password,role_id} = await req.json();
-        if(!email || !password || !role_id) throw new Error("Is required the params email,password, role_id");
-        const query=
-        await sql `INSERT INTO users (email,password,role_id) VALUES (${email}, ${password}, ${role_id})`
-        return NextResponse.json({message: "Created user correctly", user: query.rows});
-    }catch(error){
-        return NextResponse.json({error}, {status: 500});
-    }
-}
-
-export async function PUT(req: NextRequest): Promise<NextResponse>{
-    try{
-        const {id,email,password,role_id} = await req.json();
-        if(!id)throw new Error("Is required id for update user");
-        const prepareQuery = `
-        UPDATE users 
-        SET email = $1, password = $2, role_id = $3
-        WHERE id = $4
-        RETURNING *        
-        `
-        const query= await sql.query(prepareQuery,[email,password,role_id,id]);
-
-        if(query.rowCount === 0){
-            return NextResponse.json({message: "User not found"}, {status: 404});
+        const dataVerify = Util.verifyData(email,password,role_id);
+        
+        if(!dataVerify){
+            NextResponse.json({message: "Is required all params for create user"});
+            return;
         }
-        return NextResponse.json({message: "Updated user correctly", user: query.rows});
-
+        const userService = container.resolve(UserService);
+        const userCreated = await userService.createUser({email,password,role_id});
+        NextResponse.json({userCreated})     
     }catch(error){
-        return NextResponse.json({error}, {status: 500});
+        NextResponse.json({message: "Error to create user", error: error}, {status: 500});
     }
 }
+
