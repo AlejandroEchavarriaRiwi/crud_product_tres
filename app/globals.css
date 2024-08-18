@@ -1,7 +1,7 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -39,6 +39,16 @@ main{
   display: flex;
   justify-content: center;
 }
+body{
+  background-color: #e6ffeb;
+  background-image: radial-gradient(rgba(0, 166, 77, 0.57) 0.8px, #e6ffeb 0.8px);
+  background-size: 16px 16px;
+}
 main img{
   width: 50%;
+}
+.containerMain {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 90px;
 }
