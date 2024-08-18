@@ -1,13 +1,17 @@
+import 'reflect-metadata';
 import {sql} from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
+import {UserService} from "./services/userService";
+import  "./config/container";
+import { container } from 'tsyringe';
 
-export async function GET(){
+export async function GET():Promise<NextResponse>{
     try{
-        const query=
-        await sql `SELECT * FROM users;`;
-        return NextResponse.json({user:query.rows}, {status: 200});
+        const userService = container.resolve(UserService);
+        const users = await userService.getUsers();
+        return NextResponse.json({users});
     }catch(error){
-        return NextResponse.json({error}, {status: 500});
+        return NextResponse.json({message: "Error to find the users"}, {status:404});
     }
 }
 
