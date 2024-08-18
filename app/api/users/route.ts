@@ -1,9 +1,7 @@
-import 'reflect-metadata';
+import "../init";
 import { NextRequest, NextResponse } from "next/server";
-import {UserService} from "./services/userService";
-import  "./config/container";
+import {UserService} from "../services/userService";
 import { container } from 'tsyringe';
-import { Util } from '@/utils/util';
 
 export async function GET():Promise<NextResponse>{ // Create function for method GET - Endpoint
     try{
@@ -17,15 +15,15 @@ export async function GET():Promise<NextResponse>{ // Create function for method
 
 export async function POST(req: NextRequest): Promise<NextResponse>{
     try{
-        const {email,password,role_id} = await req.json();
-        if(!email || !password || !role_id){
+        const {email,password, role_id=2} = await req.json();
+        if(!email || !password){
             return NextResponse.json({message: "Is required all params for create user"});
         }
         const userService = container.resolve(UserService);
         const userCreated = await userService.createUser({email,password,role_id});
         return NextResponse.json({userCreated}, {status: 201})     
     }catch(error){
-        return NextResponse.json({message: "Error to create user", error: error}, {status: 500});
+        return NextResponse.json({message: "Error to create user", error}, {status: 500});
     }
 }
 

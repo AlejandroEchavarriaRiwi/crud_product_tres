@@ -1,8 +1,7 @@
-import 'reflect-metadata';
-import "../config/container"
+import "../../init";
 import { container } from "tsyringe";
 import { NextRequest, NextResponse } from "next/server";
-import { UserService } from '../services/userService';
+import { UserService } from '../../services/userService';
 
 
 export async function GET(req:NextRequest, {params}: {params: {id:string}}):Promise<NextResponse>{
@@ -13,7 +12,7 @@ export async function GET(req:NextRequest, {params}: {params: {id:string}}):Prom
         return NextResponse.json({message: "User found", user}, {status: 200})
 
     }catch(error){
-        return NextResponse.json({message: "Error to get user by id", error: error}, {status: 500});
+        return NextResponse.json({message: "Error to get user by id", error}, {status: 500});
     }
 }
 export async function PUT(req: NextRequest, {params}: {params: {id: string}}):Promise<NextResponse>{
@@ -25,7 +24,7 @@ export async function PUT(req: NextRequest, {params}: {params: {id: string}}):Pr
         return NextResponse.json({message: "Updated user correctly"},{status:200});
         
     }catch(error){
-        return NextResponse.json({message: "Error to update user", error: error}, {status: 500});
+        return NextResponse.json({message: "Error to update user", error}, {status: 500});
     }
 }
 
@@ -36,6 +35,6 @@ export async function DELETE(req:NextRequest, {params}: {params: {id:string}}):P
         await userService.deleteUser(parseInt(id));
         return NextResponse.json({message: "Deleted user correctly"}, {status:200});       
     }catch(error){
-        return NextResponse.json({message: "Error to delete user", error: error}, {status: 500});
+        return NextResponse.json({message: "Error to delete user", error}, {status: 500});
     }
 }
