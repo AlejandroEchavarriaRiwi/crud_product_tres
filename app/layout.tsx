@@ -1,10 +1,7 @@
-
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import ButtonAnimated from "@/components/ui/form/button/AnimatedButton";
-
-
 
 
 export const metadata: Metadata = {
