@@ -1,13 +1,16 @@
-
-
+'use client'
+import styled from "styled-components";
 import Form from "@/components/ui/form/formComponent";
-import "../../components/sytlosForm/form.css"
+
+const ContainerStyled = styled.div`
+    display: flex;
+    width: 100%`
 
 function ViewForm(){
     return(
-        <main className="PageForm" >
+        <ContainerStyled>
             <Form />
-        </main>
+        </ContainerStyled>
     )
 }
 export default ViewForm;
