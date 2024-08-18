@@ -9,7 +9,7 @@ export async function GET():Promise<NextResponse>{ // Create function for method
     try{
         const userService = container.resolve(UserService); // Resolve instance UserService
         const users = await userService.getUsers(); 
-        return NextResponse.json({users});
+        return NextResponse.json({users}, {status: 200});
     }catch(error){
         return NextResponse.json({message: "Error to find the users"}, {status:404});
     }
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest): Promise<NextResponse | undefined>{
         const dataVerify = Util.verifyData(email,password,role_id);
         
         if(!dataVerify){
-            NextResponse.json({message: "Is required all params for create user"});
+            NextResponse.json({message: "Is required all params for create user"}, {status:201});
             return;
         }
         const userService = container.resolve(UserService);
