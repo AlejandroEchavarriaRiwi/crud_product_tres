@@ -18,5 +18,8 @@ export class RoleService{
     async updateRole(role_id:number, newRole: Partial<IRole>):Promise<void>{
         return await this.roleModel.updateRole(role_id,newRole);
     }
+    async deleteRole(role_id:number): Promise<void>{
+        return await this.roleModel.deleteRole(role_id);
+    }
 
 }

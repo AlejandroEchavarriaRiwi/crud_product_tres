@@ -28,3 +28,16 @@ export async function PUT(req:NextRequest, {params}: {params: {id:string}}):Prom
         return NextResponse.json({message: "Error to create role", error}, {status: 500});
     }
 }
+
+export async function DELETE(req:NextRequest, {params}: {params: {id:string}}):Promise<NextResponse>{
+    try{
+        const {id} = params;
+        if(!id) NextResponse.json({message: "Is required id param"});
+        const roleService = container.resolve(RoleService);
+        await roleService.deleteRole(parseInt(id));
+        return NextResponse.json({message: "Deleted Role correctly"}, {status:200});
+
+    }catch(error){
+        return NextResponse.json({message: "Error to delete role", error}, {status: 500});
+    }
+}

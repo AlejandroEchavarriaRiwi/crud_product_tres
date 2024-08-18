@@ -40,4 +40,11 @@ export class RoleModel{
         `;
         await sql.query(prepareQuery,[name,role_id]);
     }
+    async deleteRole(role_id:number):Promise<void>{
+        const prepareQuery = `
+        DELETE FROM roles
+        WHERE id = $1;
+        `;
+        await sql.query(prepareQuery, [role_id]);
+    }
 }
