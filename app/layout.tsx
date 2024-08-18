@@ -1,13 +1,8 @@
-
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import ButtonAnimated from "@/components/ui/form/button/AnimatedButton";
 
-
-
-const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Crud Team 3",
@@ -21,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body>
         <Navbar/>
         <ButtonAnimated href={"login"} title={"Ingresar"}/>
         <div className="containerMain">

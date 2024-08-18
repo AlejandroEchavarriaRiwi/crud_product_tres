@@ -1,10 +1,10 @@
 import { IProduct } from "@/types/IProduct";
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 
-// Definición de la interfaz para las props del componente
-interface RenderTableProps {
-    onProductsUpdate: (products: IProduct[]) => void;
-}
+// // Definición de la interfaz para las props del componente
+// interface RenderTableProps {
+//     onProductsUpdate: (products: IProduct[]) => void;
+// }
 
 // Clase Util para manejar operaciones con productos
 export class Util {
@@ -30,20 +30,20 @@ export class Util {
 }
 
 // Componente RenderTable
-const RenderTable: React.FC<RenderTableProps> = ({ onProductsUpdate }) => {
-    useEffect(() => {
-        const loadProducts = () => {
-            const loadedProducts = Util.getProducts();
-            onProductsUpdate(loadedProducts);
-        };
+// const RenderTable: React.FC<RenderTableProps> = ({ onProductsUpdate }) => {
+//     useEffect(() => {
+//         const loadProducts = () => {
+//             const loadedProducts = Util.getProducts();
+//             onProductsUpdate(loadedProducts);
+//         };
 
-        loadProducts();
-        const intervalId = setInterval(loadProducts, 5000);
+//         loadProducts();
+//         const intervalId = setInterval(loadProducts, 5000);
 
-        return () => clearInterval(intervalId);
-    }, [onProductsUpdate]);
+//         return () => clearInterval(intervalId);
+//     }, [onProductsUpdate]);
 
-    return null;
-};
+//     return null;
+// };
 
-export default RenderTable;
+// export default RenderTable;
