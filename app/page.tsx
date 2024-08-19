@@ -1,12 +1,19 @@
 "use client";
 import "../app/globals.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@/components/ui/card/Card";
 import styled from "styled-components";
 import Navbar from "@/components/ui/navbar/Navbar";
 
+// Define la estructura de un producto
+interface Product {
+  user_id: string;
+  price: number;
+  title: string;
+  url_image: string;
+}
 
-//dando estilo al conteneedor principal de las cards
+// Dando estilo al contenedor principal de las cards
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -16,49 +23,35 @@ const Container = styled.div`
 `;
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]); // Tipa el estado con el array de Product
+
   useEffect(() => {
     localStorage.removeItem('token');
-}, []);
+
+    // Llamada a la API para obtener los productos
+    fetch('/api/products')
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
-    
     <main className="flex flex-col">
-      <Navbar/>
+      <Navbar />
       <div className="flex flex-col">
         <Container>
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
-
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
-
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
-
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
-
-          <Card
-            precio={19.99}
-            titulo="Producto Ejemplo"
-            image="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/hfpqyV7B-IMG-Dubai-UAE-1200x800.jpg"
-          />
+          {products.length > 0 ? (
+            products.map((product) => (
+              <Card
+                key={product.user_id}  // Usamos la propiedad user_id del producto
+                precio={product.price}  // Acceso a las propiedades correctas
+                titulo={product.title}
+                image={product.url_image}
+              />
+            ))
+          ) : (
+            <p>No hay productos disponibles</p>
+          )}
         </Container>
       </div>
     </main>
