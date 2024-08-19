@@ -7,7 +7,6 @@ import { Util } from '../utils/util';
 import { StyledTable, StyledThead, StyledTh, StyledTd, StyledTr, StyledImg, StyledPrice, StyledId } from './TableStyles/TablesStyles';
 import styled from 'styled-components';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import Snackbar from './TableStyles/SnackBar';
 import { useSnackbar } from './SnackbarHook';
 
 // Estos estilos adicionales los mantenemos aquí ya que son específicos de la funcionalidad de edición
@@ -207,9 +206,6 @@ const ProductTable: React.FC = () => {
                    ))}
                </tbody>
            </StyledTable>
-           <Snackbar visible={snackbarVisible}>
-               ¡Producto actualizado correctamente!
-           </Snackbar>
        </>
    );
 };
