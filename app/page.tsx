@@ -1,6 +1,6 @@
 "use client";
 import "../app/globals.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@/components/card/Card";
 import styled from "styled-components";
 import Image from "next/image";
@@ -22,6 +22,9 @@ const TituloH2 = styled.h2`
 `;
 
 export default function Home() {
+  useEffect(() => {
+    localStorage.removeItem('token');
+}, []);
   return (
     
     <main className="flex flex-col">
