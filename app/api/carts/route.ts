@@ -15,9 +15,9 @@ export async function GET():Promise<NextResponse>{
 
 export async function POST(req:NextRequest):Promise<NextResponse>{
     try{
-        const {date='2024-08-19',quantity} = await req.json();
+        const {product_id} = await req.json();
         const cartService = container.resolve(CartService);
-        const cartCreated = await cartService.createCart({date,quantity});   
+        const cartCreated = await cartService.createCart({product_id});   
         return NextResponse.json({message: "Created cart correctly", cartCreated}, {status:201});
     }catch(error){
         return NextResponse.json({message: "Error with the verb POST", error}, {status:500});

@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { IProduct } from "@/types/IProduct";
 import {Util} from "@/utils/util";
 import inputAlert from "@/components/alert/alert";
+import Button from "./button/buttonComponent";
+import Input from "./input/inputComponent";
+import Textarea from "./textarea/textareaComponent";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -86,13 +89,13 @@ const StyledButton = styled.button`
 
 export default function Form(): JSX.Element {
     const initialProduct: IProduct = {
-        id: Date.now(),
         url_image: "",
         title: "",
         description: "",
-        price: 0
+        price:0,
+        quantity:0,
+        user_id:0
     };
-
     const [product, setProduct] = useState<IProduct>(initialProduct);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -103,19 +106,28 @@ export default function Form(): JSX.Element {
         });
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
-        event.preventDefault();
-        Util.createProduct(product);
-        await inputAlert("Producto creado exitosamente", "success");
-        window.location.href = "/tablePage"
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+        e.preventDefault();
+        const data = await Util.fetchApi("/api/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+        if(!data){
+            inputAlert("Product not created", "error");
+            return;
+        }
+        inputAlert("Product created", "success");
+        console.log({data});
     }
-
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <StyledLegend>Añadir producto</StyledLegend>
+            <StyledLegend>Add product</StyledLegend>
             <StyledFieldset>
-                <StyledLabel>Imagen url:</StyledLabel>
-                <StyledInput 
+                <StyledLabel>Url image</StyledLabel>
+                <Input
                     type="text"
                     name="url_image"
                     value={product.url_image} 
@@ -123,8 +135,8 @@ export default function Form(): JSX.Element {
                 />
             </StyledFieldset>
             <StyledFieldset>
-                <StyledLabel>Titulo:</StyledLabel>
-                <StyledInput 
+                <StyledLabel>Title</StyledLabel>
+                <Input 
                     type="text" 
                     name="title"
                     value={product.title} 
@@ -132,8 +144,8 @@ export default function Form(): JSX.Element {
                 />
             </StyledFieldset>
             <StyledFieldset>
-                <StyledLabel>Descripción:</StyledLabel>
-                <StyledTextArea 
+                <StyledLabel>Description</StyledLabel>
+                <Textarea 
                     name="description"
                     placeholder="Description" 
                     value={product.description} 
@@ -141,15 +153,27 @@ export default function Form(): JSX.Element {
                 />
             </StyledFieldset>
             <StyledFieldset>
-                <StyledLabel>Precio</StyledLabel>
-                <StyledInput 
+                <StyledLabel>Price</StyledLabel>
+                <Input 
                     type="number" 
                     name="price"
                     value={product.price} 
                     onChange={handleChange}
                 />
             </StyledFieldset>
-            <StyledButton type="submit">Enviar</StyledButton>
+            <StyledFieldset>
+                <StyledLabel>Quantity</StyledLabel>
+                <Input 
+                    type="number" 
+                    name="quantity"
+                    value={product.quantity} 
+                    onChange={handleChange}
+                />
+            </StyledFieldset>
+            <Button
+            type="submit"
+            value="Add"
+            />
         </StyledForm>
     )
 }

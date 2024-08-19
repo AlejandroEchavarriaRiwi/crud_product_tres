@@ -1,5 +1,4 @@
 export default interface ICart{
     id:number,
-    date: string,
-    quantity:number,
+    product_id:number
 }
