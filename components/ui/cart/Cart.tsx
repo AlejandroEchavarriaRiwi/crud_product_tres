@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import CartIcon from './CartIcon';
 
 
 const Cart:React.FC=()=> {
     return (
-        <h1>carrito</h1>
+        <CartIcon width={30} height={30}/>
     )
 }
 
