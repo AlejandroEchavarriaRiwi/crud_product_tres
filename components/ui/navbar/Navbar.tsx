@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Cart from '../cart/cart';
+import Cart from '../cart/Cart';
 
 const Navbar: React.FC = () => {
     const pathname = usePathname()
