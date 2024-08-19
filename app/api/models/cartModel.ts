@@ -27,21 +27,23 @@ export class CartModel{
         const query = await sql.query(prepareQuery,[date,quantity]);
         return query.rows;
     }
-    async updateCart(cart_id:number, newCart:Partial<ICart>):Promise<void>{
+    async updateCart(cart_id:number, newCart:Partial<ICart>):Promise<ICart[]>{
         const {date,quantity} = newCart;
         const prepareQuery = `
         UPDATE carts SET
         date = $1, quantity = $2
         WHERE id = $3;
         `
-        await sql.query(prepareQuery,[date,quantity,cart_id]);
+        const query = await sql.query(prepareQuery,[date,quantity,cart_id]);
+        return query.rows;
     }
-    async updateCartQuantity(cart_id:number, quantity:number):Promise<void>{
+    async updateCartQuantity(cart_id:number, quantity:number):Promise<ICart[]>{
         const prepareQuery =`
-        UPDATE carts SET
-        quantity = $1
-        WHERE id = $1
+        UPDATE carts 
+        SET date = CURRENT_DATE,quantity = $1
+        WHERE id = $2
         `
-        await sql.query(prepareQuery,[quantity,cart_id]);
+        const query = await sql.query(prepareQuery,[quantity,cart_id]);
+        return query.rows;
     }
 }

@@ -19,8 +19,11 @@ export async function PUT(req:NextRequest, {params}: {params: {id:string}}):Prom
         const {id} = params;
         const {date,quantity} = await req.json();
         const cartService = container.resolve(CartService);
-        cartService.updateCart(parseInt(id), {date,quantity});
-        return NextResponse.json({message: "Updated cart correctly"}, {status:200});
+        const cartUpdated = await cartService.updateCart(parseInt(id), {date,quantity});
+        if(cartUpdated){
+            return NextResponse.json({message: "Updated cart correctly"}, {status:200});
+        }
+        return NextResponse.json({message: "Error to update cart"}, {status:400});
     }catch(error){
         return NextResponse.json({message: "Error with hte verb PUT", error}, {status:500});
     }
@@ -31,8 +34,11 @@ export async function PATCH(req:NextRequest, {params}: {params: {id:string}}):Pr
         const {id} = params;
         const {quantity} = await req.json();
         const cartService = container.resolve(CartService);
-        cartService.updateCart(parseInt(id), quantity);
-        return NextResponse.json({message: "Updated quantity correctly"}, {status:200});
+        const cartUpdated = await cartService.updateCartQuantity(parseInt(id), quantity);
+        if(cartUpdated){
+            return NextResponse.json({message: "Updated quantity correctly"}, {status:200});
+        }
+        return NextResponse.json({message: "Error to update quantity"}, {status:400});
     }catch(error){
         return NextResponse.json({message: "Error with hte verb PUT", error}, {status:500});
     }
