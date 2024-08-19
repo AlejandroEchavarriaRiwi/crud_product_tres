@@ -4,15 +4,15 @@ interface IButton{
     className?:string,
     type?:"button" | "submit",
     value: string,
-    onChange?: (event: React.ChangeEvent<HTMLButtonElement>) => void
+    onClick?: () => void;
 }
 
 const StyledButton = Styled.button
 `
 `;
 
-export default function Button({type="submit", value}:IButton): JSX.Element{
+export default function Button({type="submit", value, onClick}:IButton): JSX.Element{
     return(
-        <StyledButton type={type}>{value}</StyledButton>
+        <StyledButton type={type} onClick={onClick}>{value}</StyledButton>
     )
 }

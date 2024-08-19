@@ -8,7 +8,8 @@ export default function NuevaPagina() {
     return (
       <div className="flex">
         <NavbarAside />
-        <Table />
+        <div className="flex justify-center w-full"><Table /></div>
+        
       </div>
     )
   }
