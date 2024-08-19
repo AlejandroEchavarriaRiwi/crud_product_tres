@@ -4,7 +4,7 @@ interface IButton{
     className?:string,
     type?:"button" | "submit",
     value: string,
-    onClick?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLButtonElement>) => void
 }
 
 const StyledButton = Styled.button
