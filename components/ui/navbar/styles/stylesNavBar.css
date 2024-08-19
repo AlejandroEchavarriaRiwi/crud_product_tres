@@ -127,3 +127,9 @@
     cursor: pointer;
     border-radius: 7px;
 }
+.NavBarAsideContainer{
+    width:max-content;
+    border-right: 1px solid rgb(171, 171, 171);
+    text-align: center;
+    padding: 20px;
+}
