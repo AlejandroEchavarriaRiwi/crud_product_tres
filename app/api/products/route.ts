@@ -3,6 +3,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { container } from "tsyringe";
 import { ProductService } from "../services/productService";
 
+export async function GET():Promise<NextResponse>{
+    try{
+        const productService = container.resolve(ProductService);
+        const products = await productService.getProducts();
+        return NextResponse.json({products}, {status:200});
+    }catch(error){
+        return NextResponse.json({message: "Error with the verb GET", error}, {status:500});
+    }
+}
+
 export async function POST(req:NextRequest):Promise<NextResponse>{
     try{
         const {title,description,price,user_id,cart_id} = await req.json();
