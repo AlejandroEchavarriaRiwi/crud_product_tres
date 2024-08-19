@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Input from "../input/inputComponent";
 import { useState } from "react";
-import Button from "../button/buttonComponent"; 
+import Button from "../button/buttonComponent";
 import { useRouter } from "next/router";
 import { Util } from "@/utils/util";
 
@@ -86,44 +86,65 @@ const StyledLink = styled(Link)`
 `
 
 const Register: React.FC = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const handleRegister = async(e:React.FormEvent) =>{
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
-        const data = await Util.fetchApi("/api/auth/register",{
+        const data = await Util.fetchApi("/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({email,password})
+            body: JSON.stringify({ email, password })
         })
-        console.log({data});
+        console.log({ data });
     }
     return (
-        <ContainerWrapper>
-            <Form onSubmit={handleRegister}>
-                <Fieldset>
-                    <Label>Email</Label>
-                    <Input 
-                    type="email" 
-                    name="email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)} />
-                </Fieldset>
-                <Fieldset>
-                    <Label>Password</Label>
-                    <Input 
-                    type="password" 
-                    name="password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)} />
-                </Fieldset>
-                <Button 
-                type="submit"
-                value="Send"
-                />
-            </Form>
-        </ContainerWrapper>
+        <div className="Formstyle" >
+            <form className="formLogin" onSubmit={handleRegister}>
+
+                <h2 className="tituloLogin" >REGISTER</h2>
+
+                <fieldset>
+                    <label>Email</label>
+                    <input
+
+                        type="email"
+                        name="email"
+                        value={email}
+                        placeholder="Correo@gmail.com"
+                        onChange={(e) => setEmail(e.target.value)} />
+                </fieldset>
+                <fieldset>
+                    <label> Password </label>
+                    <input
+
+                        type="password"
+                        name="password"
+                        value={password}
+                        placeholder="*********"
+                        onChange={(e) => setPassword(e.target.value)} />
+                    <label> Confirm Password </label>
+                    <input
+
+                        type="password"
+                        name="password"
+                        value={password}
+                        placeholder="*********"
+                        onChange={(e) => setPassword(e.target.value)} />
+
+                </fieldset>
+
+                <div className="ToLogin" >
+                    <Link className="Ptext" href='/login' >Login </Link>
+                </div>
+
+                <button className="boton"
+                    type="submit"
+                    value="Send"> Send</button>
+
+            </form>
+        </div>
     )
 }
 
