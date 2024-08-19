@@ -4,6 +4,7 @@ import NavbarUser from "@/components/ui/navbar/NavbarUserView";
 import { Poppins } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import "../../components/ui/form/style/form.style.css";
 
 const poppins = Poppins({
   subsets: ['latin'],

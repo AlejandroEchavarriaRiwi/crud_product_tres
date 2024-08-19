@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Cart from '../cart/Cart';
 
 const Navbar: React.FC = () => {
     const pathname = usePathname()
@@ -23,7 +22,6 @@ const Navbar: React.FC = () => {
                 ) : (
                     <Link href="/login"><div className='ButtonLogin'>Login</div></Link>
                 )}
-                <Cart/>
             </div>
         </div>
     )

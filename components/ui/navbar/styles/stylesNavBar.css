@@ -130,7 +130,8 @@
 .NavBarAsideContainer{
     width:max-content;
     border-right: 1px solid rgb(171, 171, 171);
-    padding: 40px;
+    text-align: center;
+    padding: 20px;
 }
 .MenuContainer{
     display: flex;
