@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { useRouter } from 'next/navigation';
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -82,8 +81,6 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const router = useRouter();
-    const postgresUrl = process.env.NEXT_PUBLIC_POSTGRES_URL;
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
@@ -100,7 +97,6 @@ const Login: React.FC = () => {
 
             if (response.status === 201) {
                 // Usuario autenticado correctamente
-                router.push('/form'); // Redirige al dashboard o página principal
             } else {
                 setError('Credenciales inválidas');
             }
