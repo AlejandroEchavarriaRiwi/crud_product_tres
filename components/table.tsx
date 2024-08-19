@@ -19,8 +19,8 @@ const Table: React.FC = () => {
         })
     },[]);
 
-    const handleDeleteProduct = (event:React.ChangeEvent<HTMLButtonElement>) =>{
-        const id = event.target.getAttribute('data-id');
+    const handleDeleteProduct = (event:React.MouseEvent<HTMLButtonElement>) =>{
+        const id = event.currentTarget.getAttribute('data-id');
         console.log(id);
     }
 
@@ -58,7 +58,7 @@ const Table: React.FC = () => {
                         data-id={product.id}
                         type='submit'
                         value='Delete'
-                        onChange={handleDeleteProduct}
+                        onClick={handleDeleteProduct}
                         />
                     </td>
                 </tr>
