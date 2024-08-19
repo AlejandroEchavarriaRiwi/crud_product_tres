@@ -5,6 +5,7 @@ import Card from "@/components/card/Card";
 import styled from "styled-components";
 import Image from "next/image";
 
+
 //dando estilo al conteneedor principal de las cards
 const Container = styled.div`
   display: flex;
@@ -21,15 +22,10 @@ const TituloH2 = styled.h2`
 
 export default function Home() {
   return (
+    
     <main>
       <div className="flex flex-col">
-        <div className="flex justify-center">
-                <Image
-                    src="/sistema-inventario.png"
-                    width={1110}height={680}
-                    alt="Logo"
-                />
-        </div>
+
         <TituloH2>HERRAMIENTAS</TituloH2>
         <Container>
           <Card

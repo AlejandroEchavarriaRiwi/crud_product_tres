@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { Poppins } from 'next/font/google'
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import ButtonAnimated from "@/components/ui/form/button/AnimatedButton";
+import '../components/ui/navbar/styles/stylesNavBar.css';
+import Navbar from "@/components/ui/navbar/Navbar";
+import MainFooter from "@/components/ui/footer/MainFooter";
 
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-poppins',
+})
 
 export const metadata: Metadata = {
   title: "Crud Team 3",
@@ -15,15 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
       <body>
-        <Navbar/>
-        <ButtonAnimated href={"login"} title={"Ingresar"}/>
-        <div className="containerMain">
+      <Navbar page={"Dashboard"}/>
           {children}
-        </div>
-        
-        </body>
+      <MainFooter page={"Dashboard"}/>
+      </body>
+      
     </html>
   );
 }
