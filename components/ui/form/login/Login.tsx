@@ -85,52 +85,59 @@ const StyledLink = styled(Link)`
 `
 
 const Login: React.FC = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const handlerSubmit = async(e:React.FormEvent) =>{
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handlerSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const data = await Util.fetchApi("/api/auth/login",{ //Request to API for login user
-            method: "POST", 
+        const data = await Util.fetchApi("/api/auth/login", { //Request to API for login user
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({email,password})
+            body: JSON.stringify({ email, password })
         })
-        if(!data){ //If not exist user, show error using inputAlert
+        if (!data) { //If not exist user, show error using inputAlert
             inputAlert("User not found", "error");
             return;
         }
-        console.log({data});
+        console.log({ data });
         inputAlert("Login successful", "success");
         Util.saveLocalStorage(data.tokenGenerate);
         // Navigateto dashboard user;
     }
     return (
-        <ContainerWrapper>
-            <Form onSubmit={handlerSubmit}>
-                <Fieldset>
-                    <Label>Email</Label>
-                    <Input 
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+        <div className="Formstyle" >
+            <form className="formLogin" onSubmit={handlerSubmit}>
+                <h2 className="tituloLogin" >LOGIN</h2>
+                <fieldset>
+                    <label >Email</label>
+                    <input
+                        className="inputLogin"
+                        type="email"
+                        name="email"
+                        value={email}
+                        placeholder="you@gmail.com"
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                </Fieldset>
-                <Fieldset>
-                    <Label>Password</Label>
-                    <Input 
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                </fieldset>
+                <fieldset>
+                    <label  >Password</label>
+                    <input className="inputLogin"
+                        type="password"
+                        name="password"
+                        value={password}
+                        placeholder="*********"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </Fieldset>
-                <Button 
-                type="submit"
-                value="Send"/>
-            </Form>
-        </ContainerWrapper>
+                </fieldset>
+                <div className="ToRegister">
+                    <Link className="Ptext" href='#' >Did you forget the password?</Link> <Link className="Ptext" href='/register' >register </Link>
+                </div>
+                <button className="boton"
+                    type="submit"
+                    value="Send"> Send</button>
+            </form>
+        </div>
     )
 }
 

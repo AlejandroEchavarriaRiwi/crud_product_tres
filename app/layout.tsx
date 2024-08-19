@@ -4,6 +4,7 @@ import "./globals.css";
 import '../components/ui/navbar/styles/stylesNavBar.css';
 import Navbar from "@/components/ui/navbar/Navbar";
 import MainFooter from "@/components/ui/footer/MainFooter";
+import '../components/ui/form/style/login.register.css';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -28,7 +29,7 @@ export default function RootLayout({
           {children}
       <MainFooter page={"Dashboard"}/>
       </body>
-      
+
     </html>
   );
 }
