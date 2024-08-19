@@ -131,7 +131,7 @@
     width:max-content;
     border-right: 1px solid rgb(171, 171, 171);
     text-align: center;
-    padding: 20px;
+    padding: 40px;
 }
 .MenuContainer{
     display: flex;
