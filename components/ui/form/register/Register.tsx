@@ -3,9 +3,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import Input from "../input/inputComponent";
 import { useState } from "react";
-import Button from "../button/buttonComponent";
-import { url } from "inspector";
+import Button from "../button/buttonComponent"; 
 import { useRouter } from "next/router";
+import { Util } from "@/utils/util";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -88,25 +88,16 @@ const StyledLink = styled(Link)`
 const Register: React.FC = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const router = useRouter();
-
     const handleRegister = async(e:React.FormEvent) =>{
         e.preventDefault();
-        try{
-            const response = await fetch('http://localhost:3060/api/auth/register',{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({email,password})
-            });
-            if(response.ok){
-                router.push('/');
-                return;
-            }
-        }catch(error){
-            console.log({message: "Error with the method handleChange", error})
-        }
+        const data = await Util.fetchApi("/api/auth/register",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({email,password})
+        })
+        console.log({data});
     }
     return (
         <ContainerWrapper>

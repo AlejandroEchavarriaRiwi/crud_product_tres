@@ -25,4 +25,14 @@ export class Util {
     static verifyData(...fields: string[]): boolean {
         return fields.every(field => field.trim() !== '');
     }
+
+    static async fetchApi(url:string,options:{}){
+        try{
+            const response = await fetch(url, options);
+            if(!response.ok)throw new Error("Error with the response");
+            return response.json();
+        }catch(error){
+            console.log({message: "Error with the method fetchApi", error})
+        }
+    }
 }
