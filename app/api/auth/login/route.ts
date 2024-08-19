@@ -11,6 +11,7 @@ export async function POST(req:NextRequest):Promise<NextResponse>{
         const userLogin = await authService.loginUser(email,password);
         if(userLogin){
             const tokenGenerate = Auth.generateToken({email,password,role_id});
+            Auth.saveLocalStorage(tokenGenerate);
             return NextResponse.json({message: "Logged user", tokenGenerate}, {status: 200});
         }
         return NextResponse.json({message: "Authentication failed, User not found..."}, {status:401});
