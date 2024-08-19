@@ -9,10 +9,13 @@ export async function GET(req:NextRequest, {params}: {params: {id:string}}):Prom
         const {id} = params;
         const userService = container.resolve(UserService);
         const user = await userService.getUserById(parseInt(id));
-        return NextResponse.json({message: "User found", user}, {status: 200})
+        if(user.length !== 0){
+            return NextResponse.json({message: "User found", user}, {status: 200});
+        }
+        return NextResponse.json({message: "User not found", user}, {status: 400});
 
     }catch(error){
-        return NextResponse.json({message: "Error to get user by id", error}, {status: 500});
+        return NextResponse.json({message: "Error with the verb GET", error}, {status: 500});
     }
 }
 export async function PUT(req: NextRequest, {params}: {params: {id: string}}):Promise<NextResponse>{

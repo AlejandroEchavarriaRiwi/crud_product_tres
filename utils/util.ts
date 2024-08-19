@@ -35,4 +35,7 @@ export class Util {
             console.log({message: "Error with the method fetchApi", error})
         }
     }
+    static saveLocalStorage(token:string){
+        localStorage.setItem("token", token);
+    }
 }
