@@ -15,9 +15,9 @@ export async function GET():Promise<NextResponse>{
 
 export async function POST(req:NextRequest):Promise<NextResponse>{
     try{
-        const {title,description,price,user_id,cart_id} = await req.json();
+        const {url_image,title,description,price,quantity, user_id} = await req.json();
         const productService = container.resolve(ProductService);
-        const productCreated = await productService.createProduct({title,description,price,user_id,cart_id});
+        const productCreated = await productService.createProduct({url_image,title,description,price,quantity,user_id});
         if(productCreated){
             return NextResponse.json({message: "Created product correctly", productCreated}, {status:201});
         }

@@ -18,32 +18,32 @@ export class CartModel{
         return query.rows;
     }
     async createCart(cart:Partial<ICart>):Promise<ICart[]>{
-        const {date,quantity} = cart;
+        const {product_id} = cart;
         const prepareQuery = `
         INSERT INTO carts 
-        (date,quantity)
-        VALUES ($1,$2);
+        (product_id)
+        VALUES ($1);
         `;
-        const query = await sql.query(prepareQuery,[date,quantity]);
+        const query = await sql.query(prepareQuery,[product_id]);
         return query.rows;
     }
     async updateCart(cart_id:number, newCart:Partial<ICart>):Promise<ICart[]>{
-        const {date,quantity} = newCart;
+        const {product_id} = newCart;
         const prepareQuery = `
         UPDATE carts SET
         date = $1, quantity = $2
         WHERE id = $3;
         `
-        const query = await sql.query(prepareQuery,[date,quantity,cart_id]);
+        const query = await sql.query(prepareQuery,[product_id,cart_id]);
         return query.rows;
     }
-    async updateCartQuantity(cart_id:number, quantity:number):Promise<ICart[]>{
+    async updateCartProductId(cart_id:number, product_id:number):Promise<ICart[]>{
         const prepareQuery =`
         UPDATE carts 
-        SET date = CURRENT_DATE,quantity = $1
+        SET product_id=$1
         WHERE id = $2
         `
-        const query = await sql.query(prepareQuery,[quantity,cart_id]);
+        const query = await sql.query(prepareQuery,[product_id,cart_id]);
         return query.rows;
     }
     async deleteCart(cart_id:number):Promise<ICart[]>{
