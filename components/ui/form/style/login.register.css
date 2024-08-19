@@ -1,0 +1,94 @@
+/* div de el formulario para dar las dimension  y stylos */
+.Formstyle {
+    width: 400px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* estylo de columna para formulario */
+.formLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+/*  estylo para el imput de imail y de donde va la clave */
+input[type="email"],
+input[type="password"] {
+    border: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #F0F3FF;
+}
+
+/* titulo de formulario de registro y de login */
+.tituloLogin {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #546FFF;
+    margin-bottom: 20px;
+}
+
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* estilo de label titulo del input */
+label {
+    color: #333333;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 5px;
+    border: none;
+
+}
+
+/* div de login vinculo de p para ir a login */
+.ToLogin {
+    display: flex;
+    justify-content: start;
+}
+
+
+
+
+/*  div para organizar ambos textos en row */
+.ToRegister {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* parrafo de recuperar contrase;a que tiene un link para redireccionar*/
+.Ptext {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: #546FFF;
+}
+
+/* boton submit para enviar datos  efecto hover*/
+.boton:hover {
+    background-color: #478af5;
+}
+
+/* dise;o de boton de submit de envio de datos */
+.boton {
+    background-color: #546FFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+.heightForms{
+    display: flex;
+    align-items: center ;
+    height: 80vh;
+}

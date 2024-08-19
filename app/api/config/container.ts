@@ -4,9 +4,17 @@ import { UserService } from '../services/userService';
 import { RoleModel } from '../models/roleModel';
 import { RoleService } from '../services/roleService';
 import { AuthService } from '../services/authService';
+import { ProductModel } from '../models/productModel';
+import { ProductService } from '../services/productService';
+import { CartModel } from '../models/cartModel';
+import { CartService } from '../services/cartService';
 
 container.registerSingleton<UserModel>(UserModel);
 container.registerSingleton<UserService>(UserService);
 container.registerSingleton<RoleModel>(RoleModel);
 container.registerSingleton<RoleService>(RoleService);
 container.registerSingleton<AuthService>(AuthService);
+container.registerSingleton<ProductModel>(ProductModel);
+container.registerSingleton<ProductService>(ProductService);
+container.registerSingleton<CartModel>(CartModel);
+container.registerSingleton<CartService>(CartService);
