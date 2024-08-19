@@ -131,5 +131,25 @@
     width:max-content;
     border-right: 1px solid rgb(171, 171, 171);
     text-align: center;
-    padding: 20px;
+    padding: 40px;
+}
+.MenuContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.DarkModeButtonContainer {
+    width: 30px;
+    height: 90px;
+    background-color: #546FFF;
+    position: absolute;
+    right: 0;
+    top: 25%;
+    z-index: 10;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

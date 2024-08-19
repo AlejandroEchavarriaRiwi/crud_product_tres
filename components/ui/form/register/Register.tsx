@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Util } from "@/utils/util";
-import inputAlert from "@/components/alert/alert";
+import inputAlert from "@/components/ui/alert/alert";
 import { useRouter } from "next/navigation";
 
 

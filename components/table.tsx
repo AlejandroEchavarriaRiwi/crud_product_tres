@@ -19,8 +19,14 @@ const Table: React.FC = () => {
         })
     },[]);
 
+<<<<<<< HEAD
     const handleDeleteProduct = (event:React.MouseEvent<HTMLButtonElement>) =>{
         const id = event.currentTarget.getAttribute('data-id');
+=======
+
+    const handleDeleteProduct = (event:React.ChangeEvent<HTMLButtonElement>) =>{
+        const id = event.target.getAttribute('data-id');
+>>>>>>> f7550d7a9d6fd6ee1ee855bf1ac0816b7a696e8f
         console.log(id);
     }
 
@@ -49,6 +55,7 @@ const Table: React.FC = () => {
                     <td>{product.price}</td>
                     <td>{product.user_id}</td>
                     <td>
+
                         <Button 
                         data-id={product.id}
                         type='button'
