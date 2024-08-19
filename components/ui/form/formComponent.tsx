@@ -5,6 +5,8 @@ import { IProduct } from "@/types/IProduct";
 import {Util} from "@/utils/util";
 import inputAlert from "@/components/alert/alert";
 import Button from "./button/buttonComponent";
+import Input from "./input/inputComponent";
+import Textarea from "./textarea/textareaComponent";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -90,7 +92,9 @@ export default function Form(): JSX.Element {
         url_image: "",
         title: "",
         description: "",
-        price: 0
+        price:0,
+        quantity:0,
+        user_id:0
     };
     const [product, setProduct] = useState<IProduct>(initialProduct);
 
@@ -104,27 +108,26 @@ export default function Form(): JSX.Element {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        console.log(product);
-        // const data = await Util.fetchApi("/api/products", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(product)
-        // })
-        // if(!data){
-        //     inputAlert("Product not created", "error");
-        //     return;
-        // }
-        // inputAlert("Product created", "success");
-        //Navigate to dashboard user
+        const data = await Util.fetchApi("/api/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+        if(!data){
+            inputAlert("Product not created", "error");
+            return;
+        }
+        inputAlert("Product created", "success");
+        console.log({data});
     }
     return (
         <StyledForm onSubmit={handleSubmit}>
             <StyledLegend>Add product</StyledLegend>
             <StyledFieldset>
                 <StyledLabel>Url image</StyledLabel>
-                <StyledInput 
+                <Input
                     type="text"
                     name="url_image"
                     value={product.url_image} 
@@ -133,7 +136,7 @@ export default function Form(): JSX.Element {
             </StyledFieldset>
             <StyledFieldset>
                 <StyledLabel>Title</StyledLabel>
-                <StyledInput 
+                <Input 
                     type="text" 
                     name="title"
                     value={product.title} 
@@ -142,7 +145,7 @@ export default function Form(): JSX.Element {
             </StyledFieldset>
             <StyledFieldset>
                 <StyledLabel>Description</StyledLabel>
-                <StyledTextArea 
+                <Textarea 
                     name="description"
                     placeholder="Description" 
                     value={product.description} 
@@ -151,10 +154,19 @@ export default function Form(): JSX.Element {
             </StyledFieldset>
             <StyledFieldset>
                 <StyledLabel>Price</StyledLabel>
-                <StyledInput 
+                <Input 
                     type="number" 
                     name="price"
                     value={product.price} 
+                    onChange={handleChange}
+                />
+            </StyledFieldset>
+            <StyledFieldset>
+                <StyledLabel>Quantity</StyledLabel>
+                <Input 
+                    type="number" 
+                    name="quantity"
+                    value={product.quantity} 
                     onChange={handleChange}
                 />
             </StyledFieldset>
