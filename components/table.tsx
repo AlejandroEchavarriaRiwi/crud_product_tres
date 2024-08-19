@@ -19,9 +19,6 @@ const Table: React.FC = () => {
         })
     },[]);
 
-    const deleteProduct = () =>{
-        const id = 
-    }
 
    return (
     <table>
@@ -48,18 +45,6 @@ const Table: React.FC = () => {
                     <td>{product.price}</td>
                     <td>{product.user_id}</td>
                     <td>
-                        <Button 
-                        data-id={product.id}
-                        type='button'
-                        value='Edit'
-                        onClick={deleteProduct}/>
-                        <Button 
-                        className='btn-delete'
-                        data-id={product.id}
-                        type='button'
-                        value='Delete'
-                        onClick={deleteProduct}
-                        />
                     </td>
                 </tr>
 
