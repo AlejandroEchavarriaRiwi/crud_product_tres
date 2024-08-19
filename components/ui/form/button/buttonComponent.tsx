@@ -1,8 +1,10 @@
 import Styled from "styled-components";
 
 interface IButton{
+    className?:string,
     type?:"button" | "submit",
-    value: string
+    value: string,
+    onClick?: () => void
 }
 
 const StyledButton = Styled.button

@@ -89,6 +89,7 @@ const StyledButton = styled.button`
 
 export default function Form(): JSX.Element {
     const initialProduct: IProduct = {
+        id:0,
         url_image: "",
         title: "",
         description: "",
