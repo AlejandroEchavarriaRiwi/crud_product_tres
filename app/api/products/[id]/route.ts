@@ -44,7 +44,7 @@ export async function PATCH(req:NextRequest, {params}: {params:{id:string}}):Pro
         }
         return NextResponse.json({message: "Error to update product"}, {status:400});
     }catch(error){
-        return NextResponse.json({message: "Error with the verb PUT", error}, {status:500});
+        return NextResponse.json({message: "Error with the verb PATCH", error}, {status:500});
     }
 }
 
