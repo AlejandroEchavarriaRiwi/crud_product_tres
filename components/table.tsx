@@ -29,9 +29,13 @@ const Table: React.FC = () => {
     <table>
         <thead>
             <tr>
-                {productsKeys.map((key: string, index:number) => (
-                    <th key={index}>{key}</th>
-                ))}
+                <td>id</td>
+                <td>Image</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Function</td>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +52,6 @@ const Table: React.FC = () => {
                     <td>{product.description}</td>
                     <td>{product.quantity}</td>
                     <td>{product.price}</td>
-                    <td>{product.user_id}</td>
                     <td>
 
                         <Button 

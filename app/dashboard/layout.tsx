@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import "../../components/ui/form/style/form.style.css";
+import "../../components/ui/table/style/styleTable.css"
 
 const poppins = Poppins({
   subsets: ['latin'],

@@ -1,0 +1,34 @@
+table{
+    margin: 50px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    
+}
+thead{
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid black;
+    background-color: white;
+    display: flex;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+thead td{
+    font-weight: bold;
+    color: #546FFF;
+    text-align: center;
+}
+tr{
+    width: 100%;
+}
+tbody img{
+    width: 120px;
+}
+tbody{
+    width: 100%;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
