@@ -1,23 +1,29 @@
+'use client';
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-interface INavbar{
-    page: string,
-}
+const Navbar: React.FC = () => {
+    const pathname = usePathname()
 
-const Navbar:React.FC<INavbar>=({page})=> {
+    const isLoginPage = pathname === '/login'
+
     return (
-            <div className='NavContainer'>
-                <div className='NavLeft'>
-                    <div className='BlueCircle w-5 h-5'></div>
-                    <h1><Link href="/">T3</Link></h1>
-                    <h2><Link href="/">{page}</Link></h2>
-                </div>
-                <div className='NavRight'>
-                    <h2>Team three</h2>
-                    <div className='BlueCircle w-8 h-8'>T</div>
-                </div>
+        <div className='NavContainer'>
+            <div className='NavMainLeft'>
+                <div className='BlueCircle w-5 h-5'></div>
+                <h1><Link href="/">T3</Link></h1>
             </div>
-
+            <div className='NavMainRight'>
+                <h1><Link href="/">Home</Link></h1>
+                <h1><Link href="/">About Us</Link></h1>
+                {isLoginPage ? (
+                    <Link href="/register"><div className='ButtonLogin'>Register</div></Link>
+                ) : (
+                    <Link href="/login"><div className='ButtonLogin'>Login</div></Link>
+                )}
+            </div>
+        </div>
     )
 }
 
