@@ -20,9 +20,9 @@ export async function GET(req:NextRequest,{params}:{params:{id:string}}):Promise
 export async function PUT(req:NextRequest, {params}: {params: {id:string}}):Promise<NextResponse>{
     try{
         const {id} = params;
-        const {date,quantity} = await req.json();
+        const {product_id} = await req.json();
         const cartService = container.resolve(CartService);
-        const cartUpdated = await cartService.updateCart(parseInt(id), {date,quantity});
+        const cartUpdated = await cartService.updateCart(parseInt(id), {product_id});
         if(cartUpdated){
             return NextResponse.json({message: "Updated cart correctly"}, {status:200});
         }
@@ -35,9 +35,9 @@ export async function PUT(req:NextRequest, {params}: {params: {id:string}}):Prom
 export async function PATCH(req:NextRequest, {params}: {params: {id:string}}):Promise<NextResponse>{
     try{
         const {id} = params;
-        const {quantity} = await req.json();
+        const {product_id} = await req.json();
         const cartService = container.resolve(CartService);
-        const cartUpdated = await cartService.updateCartQuantity(parseInt(id), quantity);
+        const cartUpdated = await cartService.updateCartProductId(parseInt(id), product_id);
         if(cartUpdated){
             return NextResponse.json({message: "Updated quantity correctly"}, {status:200});
         }

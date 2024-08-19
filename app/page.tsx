@@ -1,9 +1,10 @@
 "use client";
 import "../app/globals.css";
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@/components/card/Card";
 import styled from "styled-components";
 import Image from "next/image";
+import Navbar from "@/components/ui/navbar/Navbar";
 
 
 //dando estilo al conteneedor principal de las cards
@@ -21,9 +22,13 @@ const TituloH2 = styled.h2`
 `;
 
 export default function Home() {
+  useEffect(() => {
+    localStorage.removeItem('token');
+}, []);
   return (
     
-    <main>
+    <main className="flex flex-col">
+      <Navbar/>
       <div className="flex flex-col">
 
         <TituloH2>HERRAMIENTAS</TituloH2>

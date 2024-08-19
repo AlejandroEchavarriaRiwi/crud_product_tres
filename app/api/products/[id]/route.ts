@@ -21,9 +21,9 @@ export async function GET(req:NextRequest, {params}: {params: {id:string}}):Prom
 export async function PUT(req:NextRequest, {params}: {params:{id:string}}):Promise<NextResponse>{
     try{
         const {id} = params;
-        const {title,description,price,user_id,cart_id} = await req.json();
+        const {url_image,title,description,price,quantity,user_id} = await req.json();
         const productService = container.resolve(ProductService);
-        const productUpdated = await productService.updateProduct(parseInt(id), {title,description,price,user_id,cart_id});
+        const productUpdated = await productService.updateProduct(parseInt(id), {url_image,title,description,price,quantity,user_id});
         if(productUpdated){
             return NextResponse.json({message: "Updated product correctly", productUpdated}, {status:200});
         }
@@ -36,11 +36,11 @@ export async function PUT(req:NextRequest, {params}: {params:{id:string}}):Promi
 export async function PATCH(req:NextRequest, {params}: {params:{id:string}}):Promise<NextResponse>{
     try{
         const {id} = params;
-        const {description,price} = await req.json();
+        const {price} = await req.json();
         const productService = container.resolve(ProductService);
-        const productUpdated = await productService.updateProductDescriptionPrice(parseInt(id), {description,price});
+        const productUpdated = await productService.updateProductPrice(parseInt(id), {price});
         if(productUpdated){
-            return NextResponse.json({message: "Updated description and price correctly", productUpdated}, {status:200});
+            return NextResponse.json({message: "Updated price correctly", productUpdated}, {status:200});
         }
         return NextResponse.json({message: "Error to update product"}, {status:400});
     }catch(error){
