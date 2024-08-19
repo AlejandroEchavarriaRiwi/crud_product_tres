@@ -1,9 +1,8 @@
 "use client";
 import "../app/globals.css";
 import React, { useEffect } from "react";
-import Card from "@/components/card/Card";
+import Card from "@/components/ui/card/Card";
 import styled from "styled-components";
-import Image from "next/image";
 import Navbar from "@/components/ui/navbar/Navbar";
 
 
@@ -15,11 +14,6 @@ const Container = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
-//titulo para est contenedor dinamico (herramientas para una clase de articulo)
-const TituloH2 = styled.h2`
-  text-align: center;
-  margin-top: 20px;
-`;
 
 export default function Home() {
   useEffect(() => {
@@ -30,8 +24,6 @@ export default function Home() {
     <main className="flex flex-col">
       <Navbar/>
       <div className="flex flex-col">
-
-        <TituloH2>HERRAMIENTAS</TituloH2>
         <Container>
           <Card
             precio={19.99}

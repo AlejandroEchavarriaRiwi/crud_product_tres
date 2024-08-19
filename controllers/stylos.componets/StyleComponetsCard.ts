@@ -50,7 +50,7 @@ color: #333;
 export const CardPrice = styled.p`
 font-size: 1.25rem;
 font-weight: bold;
-color: #4CAF50;
+color: #546FFF;
 margin: 0;
 `;
 
@@ -59,7 +59,7 @@ export const CardButton = styled.button`
 display: block;
 width: 100%;
 padding: 10px;
-background-color: rgba(0, 166, 77);
+background-color: #546FFF;;
 color: white;
 border: none;
 border-radius: 0 0 8px 8px;

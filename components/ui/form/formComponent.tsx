@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import { IProduct } from "@/types/IProduct";
 import {Util} from "@/utils/util";
-import inputAlert from "@/components/alert/alert";
+import inputAlert from "@/components/ui/alert/alert";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
