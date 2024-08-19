@@ -13,7 +13,7 @@ export async function POST(req:NextRequest):Promise<NextResponse>{
             const tokenGenerate = Auth.generateToken({email,password,role_id});
             return NextResponse.json({message: "Logged user", tokenGenerate}, {status: 200});
         }
-        return NextResponse.json({message: "Authentication failed"}, {status:401});
+        return NextResponse.json({message: "Authentication failed, User not found..."}, {status:401});
         
 
     }catch(error){

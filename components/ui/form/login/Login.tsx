@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Input from "../input/inputComponent";
 import Button from "../button/buttonComponent";
 import { Util } from "@/utils/util";
+import inputAlert from "@/components/alert/alert";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -88,14 +89,20 @@ const Login: React.FC = () => {
     const [password,setPassword] = useState("");
     const handlerSubmit = async(e:React.FormEvent) =>{
         e.preventDefault();
-        const data = await Util.fetchApi("/api/auth/login",{
-            method: "POST",
+        const data = await Util.fetchApi("/api/auth/login",{ //Request to API for login user
+            method: "POST", 
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({email,password})
         })
+        if(!data){ //If not exist user, show error using inputAlert
+            inputAlert("User not found", "error");
+            return;
+        }
         console.log({data});
+        inputAlert("Login successful", "success");
+        // NavigateTo dashboard user;
     }
     return (
         <ContainerWrapper>
