@@ -18,8 +18,8 @@ export class CartService{
     async updateCart(cart_id:number, cart: Partial<ICart>):Promise<ICart[]>{
         return await this.cartModel.updateCart(cart_id,cart);
     }
-    async updateCartQuantity(cart_id:number, quantity: number):Promise<ICart[]>{
-        return await this.cartModel.updateCartQuantity(cart_id,quantity);
+    async updateCartProductId(cart_id:number, product_id: number):Promise<ICart[]>{
+        return await this.cartModel.updateCartProductId(cart_id,product_id);
     }
     async deleteCart(cart_id:number):Promise<ICart[]>{
         return await this.cartModel.deleteCart(cart_id);
