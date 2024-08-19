@@ -5,10 +5,12 @@ import { Util } from '../utils/util';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import Button from './ui/form/button/buttonComponent';
 import inputAlert from './ui/alert/alert';
+import { useRouter } from 'next/navigation';
 
 const Table: React.FC = () => {
     const [productsKeys,setProductsKeys] = useState<string[]>([]);
     const [products, setProducts] = useState<IProduct[]>([]);
+    const router = useRouter();
 
     useEffect(()=>{
         Util.fetchApi('/api/products', {method: 'GET'})
@@ -20,7 +22,7 @@ const Table: React.FC = () => {
     },[]);
 
     const handleDeleteProduct = async(productId:number) =>{
-        const confirmed = confirm("Are you sure?");
+        const confirmed = confirm("Are you sure?"); //Use swal for show modal for delete
         if(!confirmed)return;
         await Util.fetchApi(`/api/products/${productId}`, {
             method: 'DELETE',
@@ -32,6 +34,9 @@ const Table: React.FC = () => {
         setProducts(newProducts);
         inputAlert("Product deleted", "success");
     }   
+    const handleEditProduct = async(productId:number) =>{
+        router.push(`/dashboard/editproduct/?id=${productId}`)
+    }
    return (
     <table>
         <thead>
@@ -60,7 +65,7 @@ const Table: React.FC = () => {
                         <Button 
                         type='button'
                         value='Edit'
-                        />
+                        onClick={()=>handleEditProduct(product.id)}/>
                         <Button
                         type='submit'
                         value='Delete'
