@@ -27,6 +27,8 @@ input[type="password"] {
 /* titulo de formulario de registro y de login */
 .tituloLogin {
     font-size: 1.7rem;
+    font-weight: bold;
+
     text-align: center;
     color: #546FFF;
     margin-bottom: 20px;
