@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Util } from "@/utils/util";
-import inputAlert from "@/components/alert/alert";
+import inputAlert from "@/components/ui/alert/alert";
 import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
