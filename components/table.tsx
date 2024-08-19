@@ -4,7 +4,7 @@ import '../styles/tablestyle.css';
 import { Util } from '../utils/util';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import Button from './ui/form/button/buttonComponent';
-
+import inputAlert from './ui/alert/alert';
 
 const Table: React.FC = () => {
     const [productsKeys,setProductsKeys] = useState<string[]>([]);
@@ -19,17 +19,19 @@ const Table: React.FC = () => {
         })
     },[]);
 
-<<<<<<< HEAD
-    const handleDeleteProduct = (event:React.MouseEvent<HTMLButtonElement>) =>{
-        const id = event.currentTarget.getAttribute('data-id');
-=======
-
-    const handleDeleteProduct = (event:React.ChangeEvent<HTMLButtonElement>) =>{
-        const id = event.target.getAttribute('data-id');
->>>>>>> f7550d7a9d6fd6ee1ee855bf1ac0816b7a696e8f
-        console.log(id);
-    }
-
+    const handleDeleteProduct = async(productId:number) =>{
+        const confirmed = confirm("Are you sure?");
+        if(!confirmed)return;
+        await Util.fetchApi(`/api/products/${productId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const newProducts = products.filter(product => product.id !== productId);
+        setProducts(newProducts);
+        inputAlert("Product deleted", "success");
+    }   
    return (
     <table>
         <thead>
@@ -55,17 +57,14 @@ const Table: React.FC = () => {
                     <td>{product.price}</td>
                     <td>{product.user_id}</td>
                     <td>
-
                         <Button 
-                        data-id={product.id}
                         type='button'
                         value='Edit'
                         />
                         <Button
-                        data-id={product.id}
                         type='submit'
                         value='Delete'
-                        onClick={handleDeleteProduct}
+                        onClick={()=>handleDeleteProduct(product.id)}
                         />
                     </td>
                 </tr>
