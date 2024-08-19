@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import Input from "../input/inputComponent";
+import Button from "../button/buttonComponent";
+import { Util } from "@/utils/util";
 
 const primaryColor = "rgba(0, 166, 77, 1)";
 const primaryColorHover = "rgba(0, 166, 77, 0.8)";
@@ -27,6 +30,9 @@ const Form = styled.form`
     width: 100%;
     gap: 20px;
 `
+const Fieldset = styled.fieldset`
+
+`;
 
 const Label = styled.label`
     display: flex;
@@ -36,33 +42,33 @@ const Label = styled.label`
     color: ${primaryColor};
 `
 
-const Input = styled.input`
-    padding: 10px;
-    border: 1px solid ${primaryColor};
-    border-radius: 4px;
-    font-size: 16px;
+// const Input = styled.input`
+//     padding: 10px;
+//     border: 1px solid ${primaryColor};
+//     border-radius: 4px;
+//     font-size: 16px;
 
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px ${primaryColorHover};
-    }
-`
+//     &:focus {
+//         outline: none;
+//         box-shadow: 0 0 0 2px ${primaryColorHover};
+//     }
+// `
 
-const Button = styled.button`
-    padding: 12px;
-    background-color: ${primaryColor};
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+// const Button = styled.button`
+//     padding: 12px;
+//     background-color: ${primaryColor};
+//     color: white;
+//     border: none;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     font-size: 16px;
+//     font-weight: bold;
+//     transition: background-color 0.3s ease;
 
-    &:hover {
-        background-color: ${primaryColorHover};
-    }
-`
+//     &:hover {
+//         background-color: ${primaryColorHover};
+//     }
+// `
 
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -78,64 +84,43 @@ const StyledLink = styled(Link)`
 `
 
 const Login: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const handlerSubmit = async(e:React.FormEvent) =>{
         e.preventDefault();
-        setError('');
-        
-
-        try {
-            const response = await fetch(`/api/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.status === 201) {
-                // Usuario autenticado correctamente
-            } else {
-                setError('Credenciales inválidas');
-            }
-        } catch (err) {
-            setError('Error al intentar iniciar sesión');
-            console.error('Error:', err);
-        }
-    };
-
+        const data = await Util.fetchApi("/api/auth/login",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({email,password})
+        })
+        console.log({data});
+    }
     return (
         <ContainerWrapper>
-            <Form onSubmit={handleSubmit}>
-                <Label>
-                    Email:
+            <Form onSubmit={handlerSubmit}>
+                <Fieldset>
+                    <Label>Email</Label>
                     <Input 
-                        type="email" 
-                        name="email" 
-                        required 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
                     />
-                </Label>
-                <Label>
-                    Contraseña:
+                </Fieldset>
+                <Fieldset>
+                    <Label>Password</Label>
                     <Input 
-                        type="password" 
-                        name="password" 
-                        required 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     />
-                </Label>
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <Button type="submit">
-                    Ingresar
-                </Button>
-                <StyledLink href="/register">
-                    Registrarse
-                </StyledLink>
+                </Fieldset>
+                <Button 
+                type="submit"
+                value="Send"/>
             </Form>
         </ContainerWrapper>
     )
