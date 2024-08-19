@@ -20,6 +20,11 @@ const Table: React.FC = () => {
     },[]);
 
 
+    const handleDeleteProduct = (event:React.ChangeEvent<HTMLButtonElement>) =>{
+        const id = event.target.getAttribute('data-id');
+        console.log(id);
+    }
+
    return (
     <table>
         <thead>
@@ -45,9 +50,20 @@ const Table: React.FC = () => {
                     <td>{product.price}</td>
                     <td>{product.user_id}</td>
                     <td>
+
+                        <Button 
+                        data-id={product.id}
+                        type='button'
+                        value='Edit'
+                        />
+                        <Button
+                        data-id={product.id}
+                        type='submit'
+                        value='Delete'
+                        onChange={handleDeleteProduct}
+                        />
                     </td>
                 </tr>
-
             ))}
         </tbody>
     </table>
