@@ -1,3 +1,4 @@
+import "../../init";
 import { NextRequest, NextResponse } from "next/server";
 import { container } from "tsyringe";
 import { AuthService } from "../../services/authService";
