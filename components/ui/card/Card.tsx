@@ -15,7 +15,7 @@ const Card: React.FC<Cards> = ({ precio, titulo, image }) => {
       <CardImage src={image} alt={titulo} />
       <CardContent>
         <CardTitle>{titulo}</CardTitle>
-        <CardPrice>${precio.toFixed(2)}</CardPrice>
+        <CardPrice>${precio}</CardPrice>
       </CardContent>
       <CardButton>Ver Detalles</CardButton>
     </CardContainer>

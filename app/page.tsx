@@ -7,6 +7,7 @@ import Navbar from "@/components/ui/navbar/Navbar";
 
 // Define la estructura de un producto
 interface Product {
+  id: string;
   user_id: string;
   price: number;
   title: string;
@@ -23,7 +24,7 @@ const Container = styled.div`
 `;
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]); // Tipa el estado con el array de Product
+  const [products, setProducts] = useState<Product[]>([]); // Estado tipado como array de Product
 
   useEffect(() => {
     localStorage.removeItem('token');
@@ -31,7 +32,13 @@ export default function Home() {
     // Llamada a la API para obtener los productos
     fetch('/api/products')
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        if (data && data.products) { // Verifica que data.products exista
+          setProducts(data.products); // Asegúrate de que data.products es un array
+        } else {
+          console.error("Formato de datos incorrecto");
+        }
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
@@ -43,10 +50,10 @@ export default function Home() {
           {products.length > 0 ? (
             products.map((product) => (
               <Card
-                key={product.user_id}  // Usamos la propiedad user_id del producto
+                key={product.id}  // Usamos la propiedad id del producto
                 precio={product.price}  // Acceso a las propiedades correctas
                 titulo={product.title}
-                image={product.url_image}
+                image={product.url_image || "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png"}  // Imagen por defecto si no existe
               />
             ))
           ) : (
