@@ -46,4 +46,12 @@ export class CartModel{
         const query = await sql.query(prepareQuery,[quantity,cart_id]);
         return query.rows;
     }
+    async deleteCart(cart_id:number):Promise<ICart[]>{
+        const prepareQuery =`
+        DELETE FROM carts
+        WHERE id = $1
+        `;
+        const query = await sql.query(prepareQuery,[cart_id]);
+        return query.rows;
+    }
 }
