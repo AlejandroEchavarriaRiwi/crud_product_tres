@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Input from "../input/inputComponent";
@@ -102,7 +102,8 @@ const Login: React.FC = () => {
         }
         console.log({data});
         inputAlert("Login successful", "success");
-        // NavigateTo dashboard user;
+        Util.saveLocalStorage(data.tokenGenerate);
+        // Navigateto dashboard user;
     }
     return (
         <ContainerWrapper>
