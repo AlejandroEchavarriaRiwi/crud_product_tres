@@ -4,11 +4,13 @@ import '../styles/tablestyle.css';
 import { Util } from '../utils/util';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import Button from './ui/form/button/buttonComponent';
-
+import inputAlert from './ui/alert/alert';
+import { useRouter } from 'next/navigation';
 
 const Table: React.FC = () => {
     const [productsKeys,setProductsKeys] = useState<string[]>([]);
     const [products, setProducts] = useState<IProduct[]>([]);
+    const router = useRouter();
 
     useEffect(()=>{
         Util.fetchApi('/api/products', {method: 'GET'})
@@ -19,12 +21,22 @@ const Table: React.FC = () => {
         })
     },[]);
 
-
-    const handleDeleteProduct = (event:React.ChangeEvent<HTMLButtonElement>) =>{
-        const id = event.target.getAttribute('data-id');
-        console.log(id);
+    const handleDeleteProduct = async(productId:number) =>{
+        const confirmed = confirm("Are you sure?"); //Use swal for show modal for delete
+        if(!confirmed)return;
+        await Util.fetchApi(`/api/products/${productId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const newProducts = products.filter(product => product.id !== productId);
+        setProducts(newProducts);
+        inputAlert("Product deleted", "success");
+    }   
+    const handleEditProduct = async(productId:number) =>{
+        router.push(`/dashboard/editproduct/?id=${productId}`)
     }
-
    return (
     <table>
         <thead>
@@ -53,17 +65,14 @@ const Table: React.FC = () => {
                     <td>{product.quantity}</td>
                     <td>{product.price}</td>
                     <td>
-
                         <Button 
-                        data-id={product.id}
                         type='button'
                         value='Edit'
-                        />
+                        onClick={()=>handleEditProduct(product.id)}/>
                         <Button
-                        data-id={product.id}
                         type='submit'
                         value='Delete'
-                        onChange={handleDeleteProduct}
+                        onClick={()=>handleDeleteProduct(product.id)}
                         />
                     </td>
                 </tr>
