@@ -124,57 +124,60 @@ export default function Form(): JSX.Element {
         console.log({data});
     }
     return (
-        <StyledForm onSubmit={handleSubmit}>
-            <StyledLegend>Add product</StyledLegend>
-            <StyledFieldset>
-                <StyledLabel>Url image</StyledLabel>
-                <Input
-                    type="text"
-                    name="url_image"
-                    value={product.url_image} 
-                    onChange={handleChange}
-                />
-            </StyledFieldset>
-            <StyledFieldset>
-                <StyledLabel>Title</StyledLabel>
-                <Input 
-                    type="text" 
-                    name="title"
-                    value={product.title} 
-                    onChange={handleChange}
-                />
-            </StyledFieldset>
-            <StyledFieldset>
-                <StyledLabel>Description</StyledLabel>
-                <Textarea 
-                    name="description"
-                    placeholder="Description" 
-                    value={product.description} 
-                    onChange={handleChange} 
-                />
-            </StyledFieldset>
-            <StyledFieldset>
-                <StyledLabel>Price</StyledLabel>
-                <Input 
-                    type="number" 
-                    name="price"
-                    value={product.price} 
-                    onChange={handleChange}
-                />
-            </StyledFieldset>
-            <StyledFieldset>
-                <StyledLabel>Quantity</StyledLabel>
-                <Input 
-                    type="number" 
-                    name="quantity"
-                    value={product.quantity} 
-                    onChange={handleChange}
-                />
-            </StyledFieldset>
-            <Button
-            type="submit"
-            value="Add"
+        <form className="form-container" onSubmit={handleSubmit}>
+        <legend className="form-legend">Add product</legend>
+        <fieldset className="form-fieldset">
+            <label className="form-label">Url image</label>
+            <input
+                className="form-input"
+                type="text"
+                name="url_image"
+                value={product.url_image}
+                onChange={handleChange}
             />
-        </StyledForm>
+        </fieldset>
+        <fieldset className="form-fieldset">
+            <label className="form-label">Title</label>
+            <input
+                className="form-input"
+                type="text"
+                name="title"
+                value={product.title}
+                onChange={handleChange}
+            />
+        </fieldset>
+        <fieldset className="form-fieldset">
+            <label className="form-label">Description</label>
+            <textarea
+                className="form-textarea"
+                name="description"
+                placeholder="Description"
+                value={product.description}
+                onChange={handleChange}
+            ></textarea>
+        </fieldset>
+        <fieldset className="form-fieldset">
+            <label className="form-label">Price</label>
+            <input
+                className="form-input"
+                type="number"
+                name="price"
+                value={product.price}
+                onChange={handleChange}
+            />
+        </fieldset>
+        <fieldset className="form-fieldset">
+            <label className="form-label">Quantity</label>
+            <input
+                className="form-input"
+                type="number"
+                name="quantity"
+                value={product.quantity}
+                onChange={handleChange}
+            />
+        </fieldset>
+        <button className="form-button" type="submit">Add</button>
+    </form>
+    
     )
 }
