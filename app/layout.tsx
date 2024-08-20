@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 import "./globals.css";
@@ -5,6 +6,7 @@ import '../components/ui/navbar/styles/stylesNavBar.css';
 import MainFooter from "@/components/ui/footer/MainFooter";
 import '../components/ui/form/style/login.register.css';
 import NightMode from "@/components/ui/form/button/nightmode";
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -25,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <body>
-      <NightMode/>
-          {children}
-      <MainFooter page={"Dashboard"}/>
+        <NightMode />
+        {children}
+        <MainFooter page={"Dashboard"} />
       </body>
 
     </html>
