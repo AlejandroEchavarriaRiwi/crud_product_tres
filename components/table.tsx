@@ -34,9 +34,10 @@ const Table: React.FC = () => {
         setProducts(newProducts);
         inputAlert("Product deleted", "success");
     }   
-    const handleEditProduct = async(productId:number) =>{
+    const handleEditProduct = async(productId: number | undefined) => {
+        if (productId === undefined) return;
         router.push(`/dashboard/editproduct/?id=${productId}`)
-    }
+      }
    return (
     <table>
         <thead>
