@@ -1,11 +1,12 @@
+'use client'
 import React from 'react';
-import DarkIcon from '../../icons/darkicon';
+import DarkModeToggle from '@/controllers/button.mode/button.toggle';
 
 
 const NightMode: React.FC = () => {
   return (
     <div className='DarkModeButtonContainer'>
-        <DarkIcon/>
+      <DarkModeToggle />
     </div>
   )
 }

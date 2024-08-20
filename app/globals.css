@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /*
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -31,27 +32,66 @@ body {
     text-wrap: balance;
   }
 } */
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
+/* Modo claro (por defecto) */
 body {
+  background-color: #FFF7EF;
   font-family: var(--font-poppins), sans-serif;
+  transition: background-color 2.5s ease, color 2s ease;
+  color: #000000;
 }
-main{
+
+main {
   display: flex;
   justify-content: center;
 }
-body{
-  background-color: #FFF7EF
-}
-main img{
+
+main img {
   width: 50%;
 }
+
 .containerMain {
   width: 80%;
   margin: 0 auto;
   margin-top: 90px;
   display: flex;
   justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+/* Estilos para el botón de alternancia */
+.toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  outline: none;
 }
