@@ -25,44 +25,44 @@ const Register: React.FC = () => {
     }
     return (
         <div className="heightForms">
-        <div className="Formstyle" >
-            <form className="formLogin" onSubmit={handleRegister}>
+            <div id="DIV" className="Formstyle" >
+                <form className="formLogin" onSubmit={handleRegister}>
 
-                <h2 className="tituloLogin" >Register</h2>
+                    <h2 className="tituloLogin" >Register</h2>
 
-                <fieldset>
-                    <label>Email</label>
-                    <input
+                    <fieldset>
+                        <label>Email</label>
+                        <input
 
-                        type="email"
-                        name="email"
-                        value={email}
-                        placeholder="Correo@gmail.com"
-                        onChange={(e) => setEmail(e.target.value)} />
-                </fieldset>
-                <fieldset>
-                    <label> Password </label>
-                    <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            placeholder="Correo@gmail.com"
+                            onChange={(e) => setEmail(e.target.value)} />
+                    </fieldset>
+                    <fieldset>
+                        <label> Password </label>
+                        <input
 
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="*********"
-                        onChange={(e) => setPassword(e.target.value)} />
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="*********"
+                            onChange={(e) => setPassword(e.target.value)} />
 
 
-                </fieldset>
+                    </fieldset>
 
-                <div className="ToLogin" >
-                    <Link className="Ptext" href='/login' >Login </Link>
-                </div>
+                    <div className="ToLogin" >
+                        <Link className="Ptext" href='/login' >Login </Link>
+                    </div>
 
-                <button className="boton"
-                    type="submit"
-                    value="Send"> Send</button>
+                    <button className="boton"
+                        type="submit"
+                        value="Send"> Send</button>
 
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
     )
 }

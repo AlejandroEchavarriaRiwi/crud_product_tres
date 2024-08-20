@@ -30,38 +30,38 @@ const Login: React.FC = () => {
 
     return (
         <div className="heightForms">
-        <div className="Formstyle" >
-            <form className="formLogin" onSubmit={handlerSubmit}>
-                <h2 className="tituloLogin" >Login</h2>
-                <fieldset>
-                    <label >Email</label>
-                    <input
-                        className="inputLogin"
-                        type="email"
-                        name="email"
-                        value={email}
-                        placeholder="you@gmail.com"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </fieldset>
-                <fieldset>
-                    <label  >Password</label>
-                    <input className="inputLogin"
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="*********"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </fieldset>
-                <div className="ToRegister">
-                    <Link className="Ptext" href='#' >Did you forget the password?</Link> <Link className="Ptext" href='/register' >register </Link>
-                </div>
-                <button className="boton"
-                    type="submit"
-                    value="Send"> Send</button>
-            </form>
-        </div>
+            <div id="DIV" className="Formstyle" >
+                <form className="formLogin" onSubmit={handlerSubmit}>
+                    <h2 className="tituloLogin" >Login</h2>
+                    <fieldset>
+                        <label >Email</label>
+                        <input
+                            className="inputLogin"
+                            type="email"
+                            name="email"
+                            value={email}
+                            placeholder="you@gmail.com"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </fieldset>
+                    <fieldset>
+                        <label  >Password</label>
+                        <input className="inputLogin"
+                            type="password"
+                            name="password"
+                            value={password}
+                            placeholder="*********"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </fieldset>
+                    <div className="ToRegister">
+                        <Link className="Ptext" href='#' >Did you forget the password?</Link> <Link className="Ptext" href='/register' >register </Link>
+                    </div>
+                    <button className="boton"
+                        type="submit"
+                        value="Send"> Send</button>
+                </form>
+            </div>
         </div>
     )
 }

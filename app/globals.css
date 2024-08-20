@@ -45,6 +45,17 @@ body {
   color: #000000;
 }
 
+body.dark-mode #DIV {
+  background-color: #333;
+  /* Color de fondo del formulario en modo noche */
+  color: #333;
+  /* Color de texto del formulario en modo noche */
+}
+
+body.dark-mode #DIVp {
+  color: #000000;
+}
+
 main {
   display: flex;
   justify-content: center;
