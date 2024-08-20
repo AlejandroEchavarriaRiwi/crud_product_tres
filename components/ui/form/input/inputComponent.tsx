@@ -4,7 +4,8 @@ interface IInput{
     className?: string,
     type?: string,
     name?: string,
-    value?: string | number,    
+    value?: string | number,  
+    placeholder?: string,  
     onChange?: (e:React.ChangeEvent<HTMLInputElement>)=>void;
 }
 const StyledInput = Styled.input
